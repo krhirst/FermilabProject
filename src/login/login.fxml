@@ -12,9 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="400.0" maxWidth="275.0" minHeight="400.0" minWidth="275.0" prefHeight="400.0" prefWidth="275.0"
-      stylesheets="@../application/defaultStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
+<VBox maxHeight="400.0" maxWidth="275.0" minHeight="400.0" minWidth="275.0" prefHeight="400.0" prefWidth="275.0" stylesheets="@../application/defaultStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
    <children>
       <ImageView fitHeight="43.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -61,7 +59,7 @@
          </VBox.margin>
       </Label>
       <TextField fx:id="password" />
-      <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" styleClass="submitButton" text="Sign In" textAlignment="CENTER">
+      <Button fx:id="signInButton" mnemonicParsing="false" onAction="#showUserPage" prefHeight="35.0" prefWidth="85.0" styleClass="submitButton" text="Sign In" textAlignment="CENTER">
          <VBox.margin>
             <Insets top="30.0" />
          </VBox.margin>
