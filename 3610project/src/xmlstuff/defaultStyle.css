@@ -1,0 +1,14 @@
+.root {
+    -fx-font-family: Arial, Helvetica, sans-serif;
+}
+
+.submitButton {
+    -fx-background-color: #32a852;
+    -fx-font-weight: bold;
+}
+.VBox {
+	-fx-background-color: black;
+}
+.btn1 {
+	
+}
