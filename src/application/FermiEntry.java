@@ -8,7 +8,7 @@ public class FermiEntry {
 	private SimpleIntegerProperty seniority;
 	private SimpleBooleanProperty inBison;
 	
-	public FermiEntry(String name, String phone, double overtime, int seniority, boolean inBison) {
+	public FermiEntry(String name, String phone, Double overtime, Integer seniority, Boolean inBison) {
 		this.name = new SimpleStringProperty(name);
 		this.phone = new SimpleStringProperty(phone);
 		this.overtime = new SimpleDoubleProperty(overtime);
@@ -16,40 +16,40 @@ public class FermiEntry {
 		this.inBison = new SimpleBooleanProperty(inBison);
 	}
 
-	public SimpleStringProperty getName() {
-		return name;
+	public String getName() {
+		return name.get();
 	}
 
 	public void setName(SimpleStringProperty name) {
 		this.name = name;
 	}
 
-	public SimpleStringProperty getPhone() {
-		return phone;
+	public String getPhone() {
+		return phone.get();
 	}
 
 	public void setPhone(SimpleStringProperty phone) {
 		this.phone = phone;
 	}
 
-	public SimpleDoubleProperty getOvertime() {
-		return overtime;
+	public Double getOvertime() {
+		return overtime.get();
 	}
 
 	public void setOvertime(SimpleDoubleProperty overtime) {
 		this.overtime = overtime;
 	}
 
-	public SimpleIntegerProperty getSeniority() {
-		return seniority;
+	public Integer getSeniority() {
+		return seniority.get();
 	}
 
 	public void setSeniority(SimpleIntegerProperty seniority) {
 		this.seniority = seniority;
 	}
 
-	public SimpleBooleanProperty isInBison() {
-		return inBison;
+	public Boolean isInBison() {
+		return inBison.get();
 	}
 
 	public void setInBison(SimpleBooleanProperty inBison) {
