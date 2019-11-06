@@ -12,12 +12,12 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userPage.UserController">
    <children>
       <TableView fx:id="dataTable" layoutX="118.0" layoutY="165.0" prefHeight="371.0" prefWidth="453.0">
-        <columns>
-          <TableColumn id="nameCol" fx:id="nameCol" prefWidth="75.0" text="Name" />
-          <TableColumn id="bisonCol" fx:id="bisonCol" prefWidth="186.0" text="Bison Feeding Program" />
+         <columns>
+            <TableColumn id="nameCol" fx:id="nameCol" prefWidth="75.0" text="Name" />
+            <TableColumn id="bisonCol" fx:id="bisonCol" prefWidth="186.0" text="Bison Feeding Program" />
             <TableColumn id="overCol" fx:id="overCol" prefWidth="78.0" text="Hours" />
             <TableColumn id="senCol" fx:id="senCol" prefWidth="113.0" text="Seniority" />
-        </columns>
+         </columns>
       </TableView>
       <Text fill="#004c97" layoutX="125.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roads &amp; Grounds" wrappingWidth="240.2060546875">
          <font>
@@ -34,7 +34,7 @@
          <children>
             <Button fx:id="btn1" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
             <Button fx:id="btn2" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
-            <Button fx:id="btn3" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
+            <Button fx:id="printButton" mnemonicParsing="false" onAction="#printPage" prefHeight="90.0" prefWidth="104.0" text="Print" />
             <Button fx:id="btn4" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
             <Button fx:id="btn5" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
             <Button fx:id="btn6" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
