@@ -1,8 +1,6 @@
 package application;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class FermiConnector {
 		private final String DB_URL = "jdbc:mysql://45.55.136.114:3306/fermitracker";
@@ -23,6 +21,31 @@ public class FermiConnector {
 	public FermiConnector() {
 		try {
 			conn = DriverManager.getConnection(DB_URL, "username", "password");
+		} catch (SQLException ex) {
+			System.out.println("ERROR: " + ex.getMessage());
+		}
+	}
+	
+	public void add(FermiEntry entry) {
+		try {
+			Statement stmt = conn.createStatement();
+			
+			stmt.executeQuery("INSERT INTO hours_offered VALUES (" + entry.tableFormat() + ")");
+			
+			conn.close();
+		} catch (SQLException ex) {
+			System.out.println("ERROR: " + ex.getMessage());
+		}
+	}
+	
+	public void remove(FermiEntry entry) {
+		try {
+			Statement stmt = conn.createStatement();
+			
+			stmt.executeQuery("DELETE FROM hours_offered WHERE Intradept._Seniority = "
+			+ entry.getSeniority() + ";");
+			
+			conn.close();
 		} catch (SQLException ex) {
 			System.out.println("ERROR: " + ex.getMessage());
 		}

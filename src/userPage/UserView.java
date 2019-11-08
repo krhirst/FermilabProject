@@ -1,6 +1,6 @@
 package userPage;
 
-import application.FermiConnector;
+//import application.FermiConnector;
 import application.FermiEntry;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

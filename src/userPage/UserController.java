@@ -38,7 +38,8 @@ public class UserController {
     public UserController() throws SQLException {
     }
 
-    @FXML
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@FXML
     private void initialize() throws SQLException {
         nameCol.setCellValueFactory(new PropertyValueFactory("name"));
         overCol.setCellValueFactory(new PropertyValueFactory("overtime"));

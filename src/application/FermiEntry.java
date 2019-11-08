@@ -55,6 +55,16 @@ public class FermiEntry {
 	public void setInBison(SimpleBooleanProperty inBison) {
 		this.inBison = inBison;
 	}
+	
+	public String tableFormat() {
+		int blInt;
+		
+		if (inBison.get())
+			blInt = 1;
+		else
+			blInt = 0;
+		return String.format("%s, %s, %f, %d, %d", name, phone, overtime, seniority, blInt);
+	}
 
 	@Override
 	public String toString() {
