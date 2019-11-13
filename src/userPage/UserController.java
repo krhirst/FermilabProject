@@ -5,9 +5,13 @@ import application.FermiEntry;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.print.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.scene.transform.Scale;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,6 +38,9 @@ public class UserController {
 
     @FXML
     TableColumn<FermiEntry, Boolean> bisonCol;
+
+    @FXML
+    Button printButton;
 
     public UserController() throws SQLException {
     }
@@ -64,6 +71,40 @@ public class UserController {
         }
 
         return data;
+    }
+
+    @FXML
+    private void printPage() {
+        Pane root = (Pane) printButton.getParent().getParent();
+        PrinterJob job = PrinterJob.createPrinterJob();
+
+        if (job != null && job.showPrintDialog(printButton.getScene().getWindow())) {
+            Printer printer = job.getPrinter();
+            PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.HARDWARE_MINIMUM);
+
+            double width = 1000;
+            double height = 1200;
+
+            PrintResolution resolution = job.getJobSettings().getPrintResolution();
+
+            width /= resolution.getFeedResolution();
+
+            height /= resolution.getCrossFeedResolution();
+
+            double scaleX = pageLayout.getPrintableWidth() / width / 600;
+            double scaleY = pageLayout.getPrintableHeight() / height / 600;
+
+            Scale scale = new Scale(scaleX, scaleY);
+
+            root.getTransforms().add(scale);
+
+            boolean success = job.printPage(pageLayout, root);
+            if (success) {
+                job.endJob();
+            }
+
+            root.getTransforms().remove(scale);
+        }
     }
 
 }
