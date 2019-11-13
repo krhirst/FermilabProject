@@ -17,7 +17,7 @@ public class UserView {
     }
 
     public void showView(Stage window) throws Exception {
-        Pane root = (Pane) FXMLLoader.load(getClass().getResource("../userPage/userfc.fxml"));
+        Pane root = (Pane) FXMLLoader.load(getClass().getResource("userfc.fxml"));
         Scene scene = new Scene(root, 650, 600);
         window.setTitle("User");
         window.setScene(scene);

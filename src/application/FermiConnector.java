@@ -20,7 +20,7 @@ public class FermiConnector {
 
 	public FermiConnector() {
 		try {
-			conn = DriverManager.getConnection(DB_URL, "fermitracker", "fermi123");
+			conn = DriverManager.getConnection(DB_URL, "username", "password");
 		} catch (SQLException ex) {
 			System.out.println("ERROR: " + ex.getMessage());
 		}
