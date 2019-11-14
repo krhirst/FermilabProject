@@ -2,6 +2,7 @@ package adminPage;
 
 import application.FermiConnector;
 import application.FermiEntry;
+import editUsersPage.EditUsersView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Scale;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.sql.ResultSet;
@@ -25,7 +27,10 @@ public class AdminController {
     private TableView<FermiEntry> dataTable;
 
     @FXML
-    TableColumn<FermiEntry, String> nameCol;
+    TableColumn<FermiEntry, String> firstNameCol;
+
+    @FXML
+    TableColumn<FermiEntry, String> lastNameCol;
 
     @FXML
     TableColumn<FermiEntry, String> phoneCol;
@@ -48,7 +53,9 @@ public class AdminController {
 
     @FXML
     private void initialize() {
-        nameCol.setCellValueFactory(new PropertyValueFactory("name"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory("firstName"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory("lastName"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory("phone"));
         overCol.setCellValueFactory(new PropertyValueFactory("overtime"));
         senCol.setCellValueFactory(new PropertyValueFactory("seniority"));
         bisonCol.setCellValueFactory(new PropertyValueFactory("inBison"));
@@ -63,8 +70,8 @@ public class AdminController {
             Statement stmt = base.getConn().createStatement();
             ResultSet result = stmt.executeQuery("SELECT * FROM hours_offered");
             while (result.next()) {
-                data.add(new FermiEntry(result.getString(1), result.getString(2), result.getDouble(3),
-                        result.getInt(4), result.getBoolean(5)));
+                data.add(new FermiEntry(result.getString(1), result.getString(2), result.getString(3), result.getDouble(4),
+                        result.getInt(5), result.getBoolean(6)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -105,5 +112,15 @@ public class AdminController {
 
             root.getTransforms().remove(scale);
         }
+    }
+
+    @FXML
+    private void editUsers() throws Exception {
+        Stage stage = (Stage) printButton.getScene().getWindow();
+        System.out.println("Got the stage");
+        EditUsersView view = new EditUsersView();
+        System.out.println("Created the view");
+        view.showView(stage);
+        System.out.println("Displayed the view");
     }
 }

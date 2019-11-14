@@ -13,10 +13,12 @@
    <children>
       <TableView fx:id="dataTable" layoutX="118.0" layoutY="165.0" prefHeight="371.0" prefWidth="453.0">
          <columns>
-            <TableColumn id="nameCol" fx:id="nameCol" prefWidth="75.0" text="Name" />
-            <TableColumn id="bisonCol" fx:id="bisonCol" prefWidth="186.0" text="Bison Feeding Program" />
-            <TableColumn id="overCol" fx:id="overCol" prefWidth="78.0" text="Hours" />
-            <TableColumn id="senCol" fx:id="senCol" prefWidth="113.0" text="Seniority" />
+            <TableColumn fx:id="firstNameCol" prefWidth="88.0" text="First Name" />
+            <TableColumn fx:id="lastNameCol" prefWidth="85.0" text="Last Name" />
+            <TableColumn fx:id="phoneCol" prefWidth="68.0" text="Phone" />
+            <TableColumn id="bisonCol" fx:id="bisonCol" prefWidth="57.0" text="Bison" />
+            <TableColumn id="overCol" fx:id="overCol" minWidth="0.0" prefWidth="64.0" text="Hours" />
+            <TableColumn id="senCol" fx:id="senCol" prefWidth="90.0" text="Seniority" />
          </columns>
       </TableView>
       <Text fill="#004c97" layoutX="125.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roads &amp; Grounds" wrappingWidth="240.2060546875">

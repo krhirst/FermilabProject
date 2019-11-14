@@ -26,19 +26,28 @@ public class FermiConnector {
 		}
 	}
 	
-	public void add(FermiEntry entry) {
+	public boolean add(FermiEntry entry) {
 		try {
-			Statement stmt = conn.createStatement();
-			
-			stmt.executeQuery("INSERT INTO hours_offered VALUES (" + entry.tableFormat() + ")");
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO hours_offered VALUES (?,?,?,?,?,?)");
+			stmt.setString(1, entry.getFirstName());
+			stmt.setString(2, entry.getLastName());
+			stmt.setString(3, entry.getPhone());
+			stmt.setDouble(4, entry.getOvertime());
+			stmt.setInt(5, entry.getSeniority());
+			stmt.setBoolean(6, entry.isInBison());
+
+			stmt.execute();
 			
 			conn.close();
+
+			return true;
 		} catch (SQLException ex) {
 			System.out.println("ERROR: " + ex.getMessage());
+			return false;
 		}
 	}
 	
-	public void remove(FermiEntry entry) {
+	public boolean remove(FermiEntry entry) {
 		try {
 			Statement stmt = conn.createStatement();
 			
@@ -46,8 +55,10 @@ public class FermiConnector {
 			+ entry.getSeniority() + ";");
 			
 			conn.close();
+			return true;
 		} catch (SQLException ex) {
 			System.out.println("ERROR: " + ex.getMessage());
+			return false;
 		}
 	}
 }

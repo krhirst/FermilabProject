@@ -25,7 +25,10 @@ public class UserController {
     private TableView<FermiEntry> dataTable;
 
     @FXML
-    TableColumn<FermiEntry, String> nameCol;
+    TableColumn<FermiEntry, String> firstNameCol;
+
+    @FXML
+    TableColumn<FermiEntry, String> lastNameCol;
 
     @FXML
     TableColumn<FermiEntry, String> phoneCol;
@@ -48,7 +51,9 @@ public class UserController {
     @SuppressWarnings({ "rawtypes", "unchecked" })
 	@FXML
     private void initialize() throws SQLException {
-        nameCol.setCellValueFactory(new PropertyValueFactory("name"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory("firstName"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory("lastName"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory("phone"));
         overCol.setCellValueFactory(new PropertyValueFactory("overtime"));
         senCol.setCellValueFactory(new PropertyValueFactory("seniority"));
         bisonCol.setCellValueFactory(new PropertyValueFactory("inBison"));
@@ -63,8 +68,8 @@ public class UserController {
             Statement stmt = base.getConn().createStatement();
             ResultSet result = stmt.executeQuery("SELECT * FROM hours_offered");
             while (result.next()) {
-                data.add(new FermiEntry(result.getString(1), result.getString(2), result.getDouble(3),
-                        result.getInt(4), result.getBoolean(5)));
+                data.add(new FermiEntry(result.getString(1), result.getString(2), result.getString(3), result.getDouble(4),
+                        result.getInt(5), result.getBoolean(6)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
