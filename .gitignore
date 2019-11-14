@@ -3,3 +3,6 @@
 .idea/
 out/
 /bin/
+.classpath
+.project
+.iml

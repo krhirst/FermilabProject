@@ -1,7 +1,8 @@
-package userPage;
+package adminPage;
 
 import application.FermiConnector;
 import application.FermiEntry;
+import editUsersPage.EditUsersView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,13 +13,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Scale;
+import javafx.stage.Stage;
 
+import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class UserController {
-
+public class AdminController {
     private FermiConnector base = new FermiConnector();
 
     @FXML
@@ -43,14 +45,14 @@ public class UserController {
     TableColumn<FermiEntry, Boolean> bisonCol;
 
     @FXML
-    Button printButton;
+    private Button printButton;
 
-    public UserController() throws SQLException {
+    public AdminController() {
+
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	@FXML
-    private void initialize() throws SQLException {
+    @FXML
+    private void initialize() {
         firstNameCol.setCellValueFactory(new PropertyValueFactory("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory("lastName"));
         phoneCol.setCellValueFactory(new PropertyValueFactory("phone"));
@@ -112,4 +114,10 @@ public class UserController {
         }
     }
 
+    @FXML
+    private void editUsers() throws Exception {
+        Stage stage = (Stage) printButton.getScene().getWindow();
+        EditUsersView view = new EditUsersView();
+        view.showView(stage);
+    }
 }

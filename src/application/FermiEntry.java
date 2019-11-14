@@ -3,25 +3,34 @@ package application;
 import javafx.beans.property.*;
 
 public class FermiEntry {
-	private SimpleStringProperty name, phone;
+	private SimpleStringProperty firstName, lastName, phone;
 	private SimpleDoubleProperty overtime;
 	private SimpleIntegerProperty seniority;
 	private SimpleBooleanProperty inBison;
 	
-	public FermiEntry(String name, String phone, Double overtime, Integer seniority, Boolean inBison) {
-		this.name = new SimpleStringProperty(name);
+	public FermiEntry(String firstName, String lastName, String phone, Double overtime, Integer seniority, Boolean inBison) {
+		this.firstName = new SimpleStringProperty(firstName);
+		this.lastName = new SimpleStringProperty(lastName);
 		this.phone = new SimpleStringProperty(phone);
 		this.overtime = new SimpleDoubleProperty(overtime);
 		this.seniority = new SimpleIntegerProperty(seniority);
 		this.inBison = new SimpleBooleanProperty(inBison);
 	}
 
-	public String getName() {
-		return name.get();
+	public String getFirstName() {
+		return firstName.get();
 	}
 
-	public void setName(SimpleStringProperty name) {
-		this.name = name;
+	public void setFirstName(SimpleStringProperty firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName.get();
+	}
+
+	public void setLastName(SimpleStringProperty lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getPhone() {
@@ -55,11 +64,21 @@ public class FermiEntry {
 	public void setInBison(SimpleBooleanProperty inBison) {
 		this.inBison = inBison;
 	}
+	
+	public String tableFormat() {
+		int blInt;
+		
+		if (inBison.get())
+			blInt = 1;
+		else
+			blInt = 0;
+		return String.format("%s, %s, %f, %d, %d", firstName.getValue(), phone.getValue(), overtime.getValue(), seniority.getValue(), blInt);
+	}
 
 	@Override
 	public String toString() {
 		return "FermiEntry{" +
-				"name=" + name +
+				"name=" + firstName +
 				", phone=" + phone +
 				", overtime=" + overtime +
 				", seniority=" + seniority +
