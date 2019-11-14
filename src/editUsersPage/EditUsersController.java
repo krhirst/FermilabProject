@@ -1,5 +1,6 @@
 package editUsersPage;
 
+import adminPage.AdminView;
 import application.FermiConnector;
 import application.FermiEntry;
 import javafx.event.ActionEvent;
@@ -8,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 public class EditUsersController {
@@ -16,6 +18,9 @@ public class EditUsersController {
 
     @FXML
     private Button addButton;
+
+    @FXML
+    private Button homeButton;
 
     @FXML
     private TextField firstNameField;
@@ -63,5 +68,13 @@ public class EditUsersController {
             result.setText("Action failed");
         }
 
+    }
+
+    @FXML
+    private void showHome() throws Exception {
+        Stage stage = (Stage) homeButton.getScene().getWindow();
+
+        AdminView view = new AdminView();
+        view.showView(stage);
     }
 }

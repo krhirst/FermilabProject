@@ -117,10 +117,7 @@ public class AdminController {
     @FXML
     private void editUsers() throws Exception {
         Stage stage = (Stage) printButton.getScene().getWindow();
-        System.out.println("Got the stage");
         EditUsersView view = new EditUsersView();
-        System.out.println("Created the view");
         view.showView(stage);
-        System.out.println("Displayed the view");
     }
 }
