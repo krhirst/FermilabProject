@@ -1,5 +1,6 @@
 package login;
 
+import adminPage.AdminView;
 import application.FermiConnector;
 import application.FermiEntry;
 import javafx.collections.FXCollections;
@@ -40,16 +41,22 @@ public class LoginController {
     private void validateLogin() {
         String username = this.username.getText();
         String password = this.password.getText();
+        Login user = null;
         ArrayList<Login> logins = getData();
         boolean loginExists = false;
         for (Login login : logins) {
             if (login.getUsername().equals(username) && login.getPassword().equals(password)) {
                 loginExists = true;
+                user = login;
             }
         }
         if (loginExists) {
             try {
-                showUserPage();
+                if (user.isAdmin()) {
+                    showAdminPage();
+                } else {
+                    showUserPage();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -63,6 +70,14 @@ public class LoginController {
         Stage stage = (Stage) signInButton.getScene().getWindow();
 
         UserView view = new UserView();
+        view.showView(stage);
+    }
+
+    @FXML
+    private void showAdminPage() throws Exception {
+        Stage stage = (Stage) signInButton.getScene().getWindow();
+
+        AdminView view = new AdminView();
         view.showView(stage);
     }
 

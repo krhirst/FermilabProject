@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0"
+      prefWidth="621.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="adminPage.AdminController">
+   <children>
+      <TableView fx:id="dataTable" layoutX="118.0" layoutY="165.0" prefHeight="371.0" prefWidth="453.0">
+         <columns>
+            <TableColumn id="nameCol" fx:id="nameCol" prefWidth="75.0" text="Name" />
+            <TableColumn id="bisonCol" fx:id="bisonCol" prefWidth="186.0" text="Bison Feeding Program" />
+            <TableColumn id="overCol" fx:id="overCol" prefWidth="78.0" text="Hours" />
+            <TableColumn id="senCol" fx:id="senCol" prefWidth="113.0" text="Seniority" />
+         </columns>
+      </TableView>
+      <Text fill="#004c97" layoutX="125.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roads &amp; Grounds" wrappingWidth="240.2060546875">
+         <font>
+            <Font name="Helvetica" size="29.0" />
+         </font>
+      </Text>
+      <Text fill="#004c97" layoutX="147.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime List Application" wrappingWidth="182.2060546875">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Hyperlink layoutX="485.0" layoutY="25.0" prefHeight="29.0" prefWidth="122.0" text="Account Settings" />
+      <VBox prefHeight="640.0" prefWidth="100.0">
+         <children>
+            <Button fx:id="btn1" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
+            <Button fx:id="usersButton" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" text="Users">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font></Button>
+            <Button fx:id="printButton" mnemonicParsing="false" onAction="#printPage" prefHeight="90.0" prefWidth="104.0" text="Print">
+               <font>
+                  <Font name="System Bold Italic" size="26.0" />
+               </font></Button>
+            <Button fx:id="btn4" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
+            <Button fx:id="btn5" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
+            <Button fx:id="btn6" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
+         </children>
+      </VBox>
+      <Text layoutX="118.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Updated: 11/7/19 08:51AM" wrappingWidth="174.13671875" />
+   </children>
+</Pane>
