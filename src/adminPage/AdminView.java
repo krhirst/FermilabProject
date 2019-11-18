@@ -1,4 +1,4 @@
-package userPage;
+package adminPage;
 
 import application.FermiEntry;
 import javafx.fxml.FXML;
@@ -8,17 +8,17 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class UserView {
+public class AdminView {
     @FXML
     private TableView<FermiEntry> dataTable;
 
-    public UserView() {
+    public AdminView() {
     }
 
     public void showView(Stage window) throws Exception {
-        Pane root = (Pane) FXMLLoader.load(getClass().getResource("userfc.fxml"));
+        Pane root = (Pane) FXMLLoader.load(getClass().getResource("adminPage.fxml"));
         Scene scene = new Scene(root, 650, 600);
-        window.setTitle("User");
+        window.setTitle("Administrator");
         window.setScene(scene);
         window.setResizable(false);
         window.show();
