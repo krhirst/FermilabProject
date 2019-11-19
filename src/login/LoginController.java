@@ -6,6 +6,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import userPage.UserView;
 import javafx.scene.control.Button;
@@ -27,7 +28,7 @@ public class LoginController {
     private TextField username;
 
     @FXML
-    private TextField password;
+    private PasswordField password;
 
     @FXML
     private Label validationError;
@@ -103,6 +104,7 @@ public class LoginController {
     private void showValidationError() {
         username.getStyleClass().add("error");
         password.getStyleClass().add("error");
+        password.clear();
         validationError.setVisible(true);
 
         ChangeListener resetStyle = (observableValue, oldV, newV) -> {
