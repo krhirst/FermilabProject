@@ -51,7 +51,7 @@ public class FermiConnector {
 		try {
 			Statement stmt = conn.createStatement();
 			
-			stmt.executeQuery("DELETE FROM hours_offered WHERE Intradept._Seniority = "
+			stmt.executeQuery("DELETE FROM hours_offered WHERE Seniority = "
 			+ entry.getSeniority() + ";");
 			
 			conn.close();

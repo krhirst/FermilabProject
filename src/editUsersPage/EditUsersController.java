@@ -41,6 +41,9 @@ public class EditUsersController {
     private CheckBox bisonProgramCheckBox;
 
     @FXML
+    private CheckBox adminCheckBox;
+
+    @FXML
     private Label result;
 
     public EditUsersController() {
