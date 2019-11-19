@@ -2,6 +2,8 @@ package login;
 
 import adminPage.AdminView;
 import application.FermiConnector;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -99,6 +101,21 @@ public class LoginController {
     }
 
     private void showValidationError() {
+        username.getStyleClass().add("error");
+        password.getStyleClass().add("error");
         validationError.setVisible(true);
+
+        ChangeListener resetStyle = (observableValue, oldV, newV) -> {
+            if ((boolean)newV) {
+                username.getStyleClass().clear();
+                password.getStyleClass().clear();
+                username.getStyleClass().addAll("text-field", "text-input");
+                password.getStyleClass().addAll("text-field", "text-input");
+                validationError.setVisible(false);
+            }
+        };
+
+        username.focusedProperty().addListener(resetStyle);
+        password.focusedProperty().addListener(resetStyle);
     }
 }
