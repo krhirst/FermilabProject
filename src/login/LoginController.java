@@ -2,12 +2,10 @@ package login;
 
 import adminPage.AdminView;
 import application.FermiConnector;
-import application.FermiEntry;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import userPage.UserView;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -15,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LoginController {
 
@@ -30,11 +27,15 @@ public class LoginController {
     @FXML
     private TextField password;
 
+    @FXML
+    private Label validationError;
+
     public LoginController() {
     }
 
     @FXML
-    private void initialize(){
+    private void initialize() {
+        validationError.setVisible(false);
     }
 
     @FXML
@@ -61,7 +62,7 @@ public class LoginController {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Incorrect username or password");
+            showValidationError();
         }
     }
 
@@ -95,5 +96,9 @@ public class LoginController {
         }
 
         return data;
+    }
+
+    private void showValidationError() {
+        validationError.setVisible(true);
     }
 }
