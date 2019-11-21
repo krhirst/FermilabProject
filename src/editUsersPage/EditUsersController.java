@@ -20,8 +20,10 @@ public class EditUsersController {
 
     private FermiConnector db = new FermiConnector();
 
+    private FermiEntry user;
+
     @FXML
-    private Button addButton, homeButton, searchButton;
+    private Button addButton, homeButton, searchButton, deleteButton;
 
     @FXML
     private TextField firstNameField, lastNameField, phoneField, seniorityField, hoursOfferedField,
@@ -31,7 +33,7 @@ public class EditUsersController {
     private CheckBox bisonProgramCheckBox, adminCheckBox;
 
     @FXML
-    private Label result, firstNameText, lastNameText, phoneText, seniorityText, hoursText;
+    private Label result, firstNameText, lastNameText, phoneText, seniorityText, hoursText, removeResult;
 
     public EditUsersController() {
     }
@@ -71,7 +73,7 @@ public class EditUsersController {
     @FXML
     private void startSearch() {
         String entry = searchField.getText();
-        FermiEntry user = searchUsers(entry);
+        user = searchUsers(entry);
         firstNameText.setText(user.getFirstName());
         lastNameText.setText(user.getLastName());
         phoneText.setText(user.getPhone());
@@ -80,7 +82,6 @@ public class EditUsersController {
     }
 
     private FermiEntry searchUsers(String entry) {
-        FermiEntry user = null;
         ArrayList<FermiEntry> data = FermiEntry.getEmployees(db);
         for (FermiEntry employee : data) {
             if (employee.getFirstName().equalsIgnoreCase(entry) || employee.getLastName().equalsIgnoreCase(entry)) {
@@ -88,5 +89,16 @@ public class EditUsersController {
             }
         }
         return user;
+    }
+
+    @FXML
+    private void deleteUser() {
+        if (db.remove(user)) {
+            String str = String.format("User: %s %s was deleted.", user.getFirstName(), user.getLastName());
+            removeResult.setText(str);
+        } else {
+            String str = String.format("Error deleting user: %s %s.", user.getFirstName(), user.getLastName());
+            removeResult.setText(str);
+        }
     }
 }
