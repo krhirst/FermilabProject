@@ -17,7 +17,7 @@ public class AdminView {
 
     public void showView(Stage window) throws Exception {
         Pane root = (Pane) FXMLLoader.load(getClass().getResource("adminPage.fxml"));
-        Scene scene = new Scene(root, 650, 600);
+        Scene scene = new Scene(root, 620, 640);
         window.setTitle("Administrator");
         window.setScene(scene);
         window.setResizable(false);

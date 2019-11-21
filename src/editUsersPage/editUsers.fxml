@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editUsersPage.EditUsersController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editUsersPage.EditUsersController">
     <children>
         <Text fill="#004c97" layoutX="125.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roads &amp; Grounds" wrappingWidth="240.2060546875">
             <font>
@@ -101,14 +101,14 @@
                                     </CheckBox>
                                  </children>
                               </HBox>
-                              <Button fx:id="addButton" mnemonicParsing="false" text="Add Employee">
+                              <Button fx:id="addButton" mnemonicParsing="false" onAction="#addUser" text="Add Employee">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
                               </Button>
+                              <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="413.0" />
                            </children>
                         </VBox>
-                        <Label fx:id="result" alignment="CENTER" layoutX="167.0" layoutY="369.0" />
                      </children>
               </AnchorPane>
             </content>
@@ -122,7 +122,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="389.0" prefWidth="426.0">
                      <children>
-                        <Label alignment="CENTER_RIGHT" layoutX="97.0" layoutY="42.0" prefHeight="18.0" prefWidth="66.0" text="Search:" />
+                        <Label alignment="CENTER_RIGHT" layoutX="41.0" layoutY="42.0" prefHeight="18.0" prefWidth="122.0" text="Enter Last Name:" />
                         <TextField fx:id="searchField" layoutX="172.0" layoutY="38.0" prefHeight="25.0" prefWidth="182.0" />
                         <Button fx:id="searchButton" layoutX="174.0" layoutY="76.0" mnemonicParsing="false" onAction="#startSearch" prefHeight="29.0" prefWidth="89.0" text="Search" />
                         <GridPane hgap="10.0" layoutX="6.0" layoutY="105.0" prefHeight="268.0" prefWidth="426.0">

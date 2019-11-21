@@ -74,17 +74,26 @@ public class EditUsersController {
     private void startSearch() {
         String entry = searchField.getText();
         user = searchUsers(entry);
-        firstNameText.setText(user.getFirstName());
-        lastNameText.setText(user.getLastName());
-        phoneText.setText(user.getPhone());
-        seniorityText.setText(user.getSeniority().toString());
-        hoursText.setText(user.getOvertime().toString());
+        if (user == null) {
+            firstNameText.setText("null");
+            lastNameText.setText("null");
+            phoneText.setText("null");
+            seniorityText.setText("null");
+            hoursText.setText("null");
+        } else {
+            firstNameText.setText(user.getFirstName());
+            lastNameText.setText(user.getLastName());
+            phoneText.setText(user.getPhone());
+            seniorityText.setText(user.getSeniority().toString());
+            hoursText.setText(user.getOvertime().toString());
+        }
+
     }
 
     private FermiEntry searchUsers(String entry) {
         ArrayList<FermiEntry> data = FermiEntry.getEmployees(db);
         for (FermiEntry employee : data) {
-            if (employee.getFirstName().equalsIgnoreCase(entry) || employee.getLastName().equalsIgnoreCase(entry)) {
+            if (employee.getLastName().equalsIgnoreCase(entry)) {
                 user = employee;
             }
         }
