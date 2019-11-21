@@ -11,40 +11,27 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class EditUsersController {
 
     private FermiConnector db = new FermiConnector();
 
     @FXML
-    private Button addButton;
+    private Button addButton, homeButton, searchButton;
 
     @FXML
-    private Button homeButton;
+    private TextField firstNameField, lastNameField, phoneField, seniorityField, hoursOfferedField,
+                        searchField;
 
     @FXML
-    private TextField firstNameField;
+    private CheckBox bisonProgramCheckBox, adminCheckBox;
 
     @FXML
-    private TextField lastNameField;
-
-    @FXML
-    private TextField phoneField;
-
-    @FXML
-    private TextField seniorityField;
-
-    @FXML
-    private TextField hoursOfferedField;
-
-    @FXML
-    private CheckBox bisonProgramCheckBox;
-
-    @FXML
-    private CheckBox adminCheckBox;
-
-    @FXML
-    private Label result;
+    private Label result, firstNameText, lastNameText, phoneText, seniorityText, hoursText;
 
     public EditUsersController() {
     }
@@ -79,5 +66,27 @@ public class EditUsersController {
 
         AdminView view = new AdminView();
         view.showView(stage);
+    }
+
+    @FXML
+    private void startSearch() {
+        String entry = searchField.getText();
+        FermiEntry user = searchUsers(entry);
+        firstNameText.setText(user.getFirstName());
+        lastNameText.setText(user.getLastName());
+        phoneText.setText(user.getPhone());
+        seniorityText.setText(user.getSeniority().toString());
+        hoursText.setText(user.getOvertime().toString());
+    }
+
+    private FermiEntry searchUsers(String entry) {
+        FermiEntry user = null;
+        ArrayList<FermiEntry> data = FermiEntry.getEmployees(db);
+        for (FermiEntry employee : data) {
+            if (employee.getFirstName().equalsIgnoreCase(entry) || employee.getLastName().equalsIgnoreCase(entry)) {
+                user = employee;
+            }
+        }
+        return user;
     }
 }

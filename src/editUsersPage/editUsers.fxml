@@ -120,7 +120,41 @@
           </Tab>
             <Tab text="Remove User">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="97.0" layoutY="42.0" prefHeight="18.0" prefWidth="66.0" text="Search:" />
+                        <TextField fx:id="searchField" layoutX="172.0" layoutY="38.0" prefHeight="25.0" prefWidth="182.0" />
+                        <Button fx:id="searchButton" layoutX="163.0" layoutY="76.0" mnemonicParsing="false" onAction="#startSearch" prefHeight="29.0" prefWidth="100.0" text="Search" />
+                        <GridPane hgap="10.0" layoutX="6.0" layoutY="105.0" prefHeight="268.0" prefWidth="426.0">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="139.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.0" minWidth="10.0" prefWidth="277.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="First Name:">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <Label text="Last Name:" GridPane.rowIndex="1" />
+                              <Label text="Seniority:" GridPane.rowIndex="3" />
+                              <Label text="Hours Offered:" GridPane.rowIndex="4" />
+                              <Label text="Phone:" GridPane.rowIndex="2" />
+                              <Label fx:id="firstNameText" GridPane.columnIndex="1" />
+                              <Label fx:id="lastNameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="phoneText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="seniorityText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="hoursText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                           </children>
+                        </GridPane>
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>

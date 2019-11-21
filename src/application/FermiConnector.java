@@ -1,6 +1,9 @@
 package application;
 
+import login.Login;
+
 import java.sql.*;
+import java.util.ArrayList;
 
 public class FermiConnector {
 		private final String DB_URL = "jdbc:mysql://45.55.136.114:3306/fermitracker";
@@ -60,5 +63,17 @@ public class FermiConnector {
 			System.out.println("ERROR: " + ex.getMessage());
 			return false;
 		}
+	}
+
+	public ResultSet getData(String tableName) {
+		ResultSet result = null;
+		try {
+			Statement stmt = conn.createStatement();
+			result = stmt.executeQuery("SELECT * FROM " + tableName);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 }

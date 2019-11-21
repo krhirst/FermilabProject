@@ -3,7 +3,6 @@ package login;
 import adminPage.AdminView;
 import application.FermiConnector;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -12,14 +11,11 @@ import userPage.UserView;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class LoginController {
 
-    private FermiConnector base = new FermiConnector();
+    private FermiConnector db = new FermiConnector();
 
     @FXML
     private Button signInButton;
@@ -46,7 +42,7 @@ public class LoginController {
         String username = this.username.getText();
         String password = this.password.getText();
         Login user = null;
-        ArrayList<Login> logins = getData();
+        ArrayList<Login> logins = Login.getLogins(db);
         boolean loginExists = false;
         for (Login login : logins) {
             if (login.getUsername().equals(username) && login.getPassword().equals(password)) {
@@ -83,22 +79,6 @@ public class LoginController {
 
         AdminView view = new AdminView();
         view.showView(stage);
-    }
-
-    private ArrayList<Login> getData() {
-        ArrayList<Login> data = new ArrayList<>();
-        try {
-            Statement stmt = base.getConn().createStatement();
-            ResultSet result = stmt.executeQuery("SELECT * FROM logins");
-            while (result.next()) {
-                data.add(new Login(result.getInt(1), result.getString(2), result.getString(3),
-                        result.getBoolean(4)));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return data;
     }
 
     private void showValidationError() {
