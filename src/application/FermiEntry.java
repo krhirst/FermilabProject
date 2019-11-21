@@ -2,6 +2,10 @@ package application;
 
 import javafx.beans.property.*;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class FermiEntry {
 	private SimpleStringProperty firstName, lastName, phone;
 	private SimpleDoubleProperty overtime;
@@ -84,5 +88,24 @@ public class FermiEntry {
 				", seniority=" + seniority +
 				", inBison=" + inBison +
 				'}';
+	}
+
+	public static ArrayList<FermiEntry> getEmployees(FermiConnector dbConnection) {
+		ResultSet resultSet = dbConnection.getData("hours_offered");
+		return parseEmployeeData(resultSet);
+	}
+
+	private static ArrayList<FermiEntry> parseEmployeeData(ResultSet results) {
+		ArrayList<FermiEntry> data = new ArrayList<>();
+		try {
+			while (results.next()) {
+				data.add(new FermiEntry(results.getString(1), results.getString(2), results.getString(3),
+						results.getDouble(4), results.getInt(5), results.getBoolean(6)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return data;
 	}
 }

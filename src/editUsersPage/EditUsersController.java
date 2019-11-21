@@ -11,37 +11,29 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class EditUsersController {
 
     private FermiConnector db = new FermiConnector();
 
-    @FXML
-    private Button addButton;
+    private FermiEntry user;
 
     @FXML
-    private Button homeButton;
+    private Button addButton, homeButton, searchButton, deleteButton;
 
     @FXML
-    private TextField firstNameField;
+    private TextField firstNameField, lastNameField, phoneField, seniorityField, hoursOfferedField,
+                        searchField;
 
     @FXML
-    private TextField lastNameField;
+    private CheckBox bisonProgramCheckBox, adminCheckBox;
 
     @FXML
-    private TextField phoneField;
-
-    @FXML
-    private TextField seniorityField;
-
-    @FXML
-    private TextField hoursOfferedField;
-
-    @FXML
-    private CheckBox bisonProgramCheckBox;
-
-    @FXML
-    private Label result;
+    private Label result, firstNameText, lastNameText, phoneText, seniorityText, hoursText, removeResult;
 
     public EditUsersController() {
     }
@@ -76,5 +68,46 @@ public class EditUsersController {
 
         AdminView view = new AdminView();
         view.showView(stage);
+    }
+
+    @FXML
+    private void startSearch() {
+        String entry = searchField.getText();
+        user = searchUsers(entry);
+        if (user == null) {
+            firstNameText.setText("null");
+            lastNameText.setText("null");
+            phoneText.setText("null");
+            seniorityText.setText("null");
+            hoursText.setText("null");
+        } else {
+            firstNameText.setText(user.getFirstName());
+            lastNameText.setText(user.getLastName());
+            phoneText.setText(user.getPhone());
+            seniorityText.setText(user.getSeniority().toString());
+            hoursText.setText(user.getOvertime().toString());
+        }
+
+    }
+
+    private FermiEntry searchUsers(String entry) {
+        ArrayList<FermiEntry> data = FermiEntry.getEmployees(db);
+        for (FermiEntry employee : data) {
+            if (employee.getLastName().equalsIgnoreCase(entry)) {
+                user = employee;
+            }
+        }
+        return user;
+    }
+
+    @FXML
+    private void deleteUser() {
+        if (db.remove(user)) {
+            String str = String.format("User: %s %s was deleted.", user.getFirstName(), user.getLastName());
+            removeResult.setText(str);
+        } else {
+            String str = String.format("Error deleting user: %s %s.", user.getFirstName(), user.getLastName());
+            removeResult.setText(str);
+        }
     }
 }
