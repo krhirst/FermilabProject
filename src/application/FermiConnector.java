@@ -49,6 +49,10 @@ public class FermiConnector {
 			return false;
 		}
 	}
+
+	public boolean edit(FermiEntry entry) {
+		return false;
+	}
 	
 	public boolean remove(FermiEntry entry) {
 		try {

@@ -3,17 +3,11 @@ package editUsersPage;
 import adminPage.AdminView;
 import application.FermiConnector;
 import application.FermiEntry;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class EditUsersController {
@@ -23,11 +17,18 @@ public class EditUsersController {
     private FermiEntry user;
 
     @FXML
-    private Button addButton, homeButton, searchButton, deleteButton;
+    private TabPane tabPane;
+
+    @FXML
+    private Tab addTab, editTab, removeTab;
+
+    @FXML
+    private Button addButton, homeButton, removeTabSearchButton, editTabSearchButton, deleteButton;
 
     @FXML
     private TextField firstNameField, lastNameField, phoneField, seniorityField, hoursOfferedField,
-                        searchField;
+            removeTabSearchField, editTabSearchField, editFirstNameField, editLastNameField,
+            editPhoneField, editSeniorityField, editHoursField;
 
     @FXML
     private CheckBox bisonProgramCheckBox, adminCheckBox;
@@ -71,9 +72,28 @@ public class EditUsersController {
     }
 
     @FXML
-    private void startSearch() {
-        String entry = searchField.getText();
-        user = searchUsers(entry);
+    private void displayUserFromSearch() {
+        if (tabPane.getSelectionModel().getSelectedItem().getId().equals("editTab")) {
+            String entry = editTabSearchField.getText();
+            user = searchUsers(entry);
+            setTextFields();
+        } else if (tabPane.getSelectionModel().getSelectedItem().getId().equals("removeTab")) {
+            String entry = removeTabSearchField.getText();
+            user = searchUsers(entry);
+            setTextLabels();
+        }
+        // TODO: check if user is null and display that user was not found
+    }
+
+    private void setTextFields() {
+        editFirstNameField.setText(user.getFirstName());
+        editLastNameField.setText(user.getLastName());
+        editPhoneField.setText(user.getPhone());
+        editSeniorityField.setText(user.getSeniority().toString());
+        editHoursField.setText(user.getOvertime().toString());
+    }
+
+    private void setTextLabels() {
         firstNameText.setText(user.getFirstName());
         lastNameText.setText(user.getLastName());
         phoneText.setText(user.getPhone());
