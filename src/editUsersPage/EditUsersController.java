@@ -104,7 +104,7 @@ public class EditUsersController {
     private FermiEntry searchUsers(String entry) {
         ArrayList<FermiEntry> data = FermiEntry.getEmployees(db);
         for (FermiEntry employee : data) {
-            if (employee.getFirstName().equalsIgnoreCase(entry) || employee.getLastName().equalsIgnoreCase(entry)) {
+            if (employee.getLastName().equalsIgnoreCase(entry)) {
                 user = employee;
             }
         }
