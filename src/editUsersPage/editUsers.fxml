@@ -149,6 +149,8 @@
                               <TextField fx:id="editPhoneField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
+                        <Button fx:id="editButton" layoutX="158.0" layoutY="379.0" mnemonicParsing="false" onAction="#editUser" prefHeight="39.0" prefWidth="122.0" text="Edit Employee" />
+                        <Label fx:id="editResult" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="427.0" prefHeight="17.0" prefWidth="437.0" />
                      </children></AnchorPane>
             </content>
           </Tab>

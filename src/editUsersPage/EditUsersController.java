@@ -23,7 +23,7 @@ public class EditUsersController {
     private Tab addTab, editTab, removeTab;
 
     @FXML
-    private Button addButton, homeButton, removeTabSearchButton, editTabSearchButton, deleteButton;
+    private Button addButton, homeButton, removeTabSearchButton, editTabSearchButton, deleteButton, editButton;
 
     @FXML
     private TextField firstNameField, lastNameField, phoneField, seniorityField, hoursOfferedField,
@@ -34,7 +34,7 @@ public class EditUsersController {
     private CheckBox bisonProgramCheckBox, adminCheckBox;
 
     @FXML
-    private Label result, firstNameText, lastNameText, phoneText, seniorityText, hoursText, removeResult;
+    private Label result, firstNameText, lastNameText, phoneText, seniorityText, hoursText, removeResult, editResult;
 
     public EditUsersController() {
     }
@@ -109,6 +109,31 @@ public class EditUsersController {
             }
         }
         return user;
+    }
+
+    @FXML
+    private void editUser() {
+        int originalSeniority = user.getSeniority();
+
+        String fName = editFirstNameField.getText();
+        String lName = editLastNameField.getText();
+        String phone = editPhoneField.getText();
+        Double hours = Double.parseDouble(editHoursField.getText());
+        Integer seniority = Integer.parseInt(editSeniorityField.getText());
+
+        user.setFirstName(fName);
+        user.setLastName(lName);
+        user.setPhone(phone);
+        user.setOvertime(hours);
+        user.setSeniority(seniority);
+
+        if (db.edit(user, originalSeniority)) {
+            String str = String.format("User: %s %s was updated.", user.getFirstName(), user.getLastName());
+            editResult.setText(str);
+        } else {
+            String str = String.format("Error updating user: %s %s.", user.getFirstName(), user.getLastName());
+            editResult.setText(str);
+        }
     }
 
     @FXML

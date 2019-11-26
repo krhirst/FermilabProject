@@ -25,48 +25,48 @@ public class FermiEntry {
 		return firstName.get();
 	}
 
-	public void setFirstName(SimpleStringProperty firstName) {
-		this.firstName = firstName;
+	public void setFirstName(String firstName) {
+		this.firstName = new SimpleStringProperty(firstName);
 	}
 
 	public String getLastName() {
 		return lastName.get();
 	}
 
-	public void setLastName(SimpleStringProperty lastName) {
-		this.lastName = lastName;
+	public void setLastName(String lastName) {
+		this.lastName = new SimpleStringProperty(lastName);
 	}
 
 	public String getPhone() {
 		return phone.get();
 	}
 
-	public void setPhone(SimpleStringProperty phone) {
-		this.phone = phone;
+	public void setPhone(String phone) {
+		this.phone = new SimpleStringProperty(phone);
 	}
 
 	public Double getOvertime() {
 		return overtime.get();
 	}
 
-	public void setOvertime(SimpleDoubleProperty overtime) {
-		this.overtime = overtime;
+	public void setOvertime(double overtime) {
+		this.overtime = new SimpleDoubleProperty(overtime);
 	}
 
 	public Integer getSeniority() {
 		return seniority.get();
 	}
 
-	public void setSeniority(SimpleIntegerProperty seniority) {
-		this.seniority = seniority;
+	public void setSeniority(int seniority) {
+		this.seniority = new SimpleIntegerProperty(seniority);
 	}
 
 	public Boolean isInBison() {
 		return inBison.get();
 	}
 
-	public void setInBison(SimpleBooleanProperty inBison) {
-		this.inBison = inBison;
+	public void setInBison(boolean inBison) {
+		this.inBison = new SimpleBooleanProperty(inBison);
 	}
 	
 	public String tableFormat() {
