@@ -59,7 +59,7 @@ public class EditUsersController {
         if (validateEntries()) {
             String fName = firstNameField.getText();
             String lName = lastNameField.getText();
-            String phone = phoneField.getText();
+            String phone = parsePhoneNumber(phoneField.getText());
             Double hours = Double.parseDouble(hoursOfferedField.getText());
             Integer seniority = Integer.parseInt(seniorityField.getText());
             Boolean bison = bisonProgramCheckBox.isSelected();
@@ -160,6 +160,19 @@ public class EditUsersController {
         }
     }
 
+    private String parsePhoneNumber(String text) {
+        StringBuilder phoneNumber = new StringBuilder();
+
+        String areaCode = text.substring(0, 2);
+        String first3 = text.substring(3, 6);
+        String last4 = text.substring(6);
+
+        phoneNumber.append("(" + areaCode + ")");
+        phoneNumber.append(first3 + "-" + last4);
+        
+        return phoneNumber.toString();
+    }
+
     private boolean validateEntries() {
         ArrayList<TextField> invalidEntries = new ArrayList<>();
         if (tabPane.getSelectionModel().getSelectedItem().getId().equals("addTab")) {
@@ -211,7 +224,17 @@ public class EditUsersController {
     }
 
     private boolean validatePhone(TextField field) {
-        return false;
+        String text = field.getText();
+        if (text.isEmpty() || !Pattern.matches("[0-9]{10}", text)) {
+            ChangeListener resetStyle = (observableValue, oldV, newV) -> {
+                if ((boolean)newV) {
+                    field.getStyleClass().clear();
+                    field.getStyleClass().addAll("text-field", "text-input");
+                }};
+            field.focusedProperty().addListener(resetStyle);
+            return false;
+        }
+        return true;
     }
 
     private boolean validateSeniority(TextField field) {
