@@ -169,7 +169,7 @@ public class EditUsersController {
 
         phoneNumber.append("(" + areaCode + ")");
         phoneNumber.append(first3 + "-" + last4);
-        
+
         return phoneNumber.toString();
     }
 
@@ -238,6 +238,20 @@ public class EditUsersController {
     }
 
     private boolean validateSeniority(TextField field) {
+        try {
+            int num = Integer.parseInt(field.getText());
+            if (num > 0) {
+                return true;
+            }
+        } catch (NumberFormatException e) {
+            ChangeListener resetStyle = (observableValue, oldV, newV) -> {
+                if ((boolean)newV) {
+                    field.getStyleClass().clear();
+                    field.getStyleClass().addAll("text-field", "text-input");
+                }};
+            field.focusedProperty().addListener(resetStyle);
+            return false;
+        }
         return false;
     }
 
