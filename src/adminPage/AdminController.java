@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
+import login.LoginController;
 
 import java.awt.*;
 import java.sql.ResultSet;
@@ -46,6 +47,9 @@ public class AdminController {
 
     @FXML
     private Button printButton;
+    
+    @FXML
+    private Button logoutButton;
 
     public AdminController() {
 
@@ -118,6 +122,14 @@ public class AdminController {
     private void editUsers() throws Exception {
         Stage stage = (Stage) printButton.getScene().getWindow();
         EditUsersView view = new EditUsersView();
+        view.showView(stage);
+    }
+    
+    @FXML
+    private void logOut() throws Exception{
+    	Stage stage = (Stage) logoutButton.getScene().getWindow();
+
+        LoginController view = new LoginController();
         view.showView(stage);
     }
 }

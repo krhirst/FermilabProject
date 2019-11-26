@@ -5,10 +5,13 @@ import application.FermiConnector;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import userPage.UserView;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -120,4 +123,14 @@ public class LoginController {
         username.focusedProperty().addListener(resetStyle);
         password.focusedProperty().addListener(resetStyle);
     }
+    
+    public void showView(Stage window) throws Exception {
+        Pane root = (Pane) FXMLLoader.load(getClass().getResource("login.fxml"));
+        Scene scene = new Scene(root);
+        window.setTitle("Log In");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
+    }
+    
 }
