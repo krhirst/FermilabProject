@@ -256,6 +256,20 @@ public class EditUsersController {
     }
 
     private boolean validateHours(TextField field) {
+        try {
+            double num = Double.parseDouble(field.getText());
+            if (num >= 0) {
+                return true;
+            }
+        } catch (NumberFormatException e) {
+            ChangeListener resetStyle = (observableValue, oldV, newV) -> {
+                if ((boolean)newV) {
+                    field.getStyleClass().clear();
+                    field.getStyleClass().addAll("text-field", "text-input");
+                }};
+            field.focusedProperty().addListener(resetStyle);
+            return false;
+        }
         return false;
     }
 }
