@@ -9,6 +9,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 
@@ -175,28 +177,26 @@ public class EditUsersController {
 
     private boolean validateEntries() {
         ArrayList<TextField> invalidEntries = new ArrayList<>();
+        HashMap<TextField, Boolean> entries = new HashMap<TextField, Boolean>();
+
         if (tabPane.getSelectionModel().getSelectedItem().getId().equals("addTab")) {
-            if (!validateString(firstNameField))
-                invalidEntries.add(firstNameField);
-            if (!validateString(lastNameField))
-                invalidEntries.add(lastNameField);
-            if (!validatePhone(phoneField))
-                invalidEntries.add(phoneField);
-            if (!validateSeniority(seniorityField))
-                invalidEntries.add(seniorityField);
-            if (!validateHours(hoursOfferedField))
-                invalidEntries.add(hoursOfferedField);
+            entries.put(firstNameField, validateString(firstNameField));
+            entries.put(lastNameField, validateString(lastNameField));
+            entries.put(phoneField, validatePhone(phoneField));
+            entries.put(seniorityField, validateSeniority(seniorityField));
+            entries.put(hoursOfferedField, validateHours(hoursOfferedField));
         } else if (tabPane.getSelectionModel().getSelectedItem().getId().equals("editTab")) {
-            if (!validateString(editFirstNameField))
-                invalidEntries.add(editFirstNameField);
-            if (!validateString(editLastNameField))
-                invalidEntries.add(editLastNameField);
-            if (!validatePhone(editPhoneField))
-                invalidEntries.add(editPhoneField);
-            if (!validateSeniority(editSeniorityField))
-                invalidEntries.add(editSeniorityField);
-            if (!validateHours(editHoursField))
-                invalidEntries.add(editHoursField);
+            entries.put(editFirstNameField, validateString(editFirstNameField));
+            entries.put(editLastNameField, validateString(editLastNameField));
+            entries.put(editPhoneField, validatePhone(editPhoneField));
+            entries.put(editSeniorityField, validateSeniority(editSeniorityField));
+            entries.put(editHoursField, validateHours(editHoursField));
+        }
+
+        Set<TextField> keyset = entries.keySet();
+        for (TextField key : keyset) {
+            if (!entries.get(key))
+                invalidEntries.add(key);
         }
 
         if (invalidEntries.isEmpty()) {
@@ -212,12 +212,7 @@ public class EditUsersController {
     private boolean validateString(TextField field) {
         String text = field.getText();
         if (text.isEmpty() || !Pattern.matches("[A-Za-z]+\\s?[A-Za-z]*", text)) {
-            ChangeListener resetStyle = (observableValue, oldV, newV) -> {
-            if ((boolean)newV) {
-                field.getStyleClass().clear();
-                field.getStyleClass().addAll("text-field", "text-input");
-            }};
-            field.focusedProperty().addListener(resetStyle);
+            setChangeListener(field);
             return false;
         };
         return true;
@@ -226,12 +221,7 @@ public class EditUsersController {
     private boolean validatePhone(TextField field) {
         String text = field.getText();
         if (text.isEmpty() || !Pattern.matches("[0-9]{10}", text)) {
-            ChangeListener resetStyle = (observableValue, oldV, newV) -> {
-                if ((boolean)newV) {
-                    field.getStyleClass().clear();
-                    field.getStyleClass().addAll("text-field", "text-input");
-                }};
-            field.focusedProperty().addListener(resetStyle);
+            setChangeListener(field);
             return false;
         }
         return true;
@@ -244,12 +234,7 @@ public class EditUsersController {
                 return true;
             }
         } catch (NumberFormatException e) {
-            ChangeListener resetStyle = (observableValue, oldV, newV) -> {
-                if ((boolean)newV) {
-                    field.getStyleClass().clear();
-                    field.getStyleClass().addAll("text-field", "text-input");
-                }};
-            field.focusedProperty().addListener(resetStyle);
+            setChangeListener(field);
             return false;
         }
         return false;
@@ -262,14 +247,18 @@ public class EditUsersController {
                 return true;
             }
         } catch (NumberFormatException e) {
-            ChangeListener resetStyle = (observableValue, oldV, newV) -> {
-                if ((boolean)newV) {
-                    field.getStyleClass().clear();
-                    field.getStyleClass().addAll("text-field", "text-input");
-                }};
-            field.focusedProperty().addListener(resetStyle);
+            setChangeListener(field);
             return false;
         }
         return false;
+    }
+
+    private void setChangeListener(TextField field) {
+        ChangeListener resetStyle = (observableValue, oldV, newV) -> {
+            if ((boolean)newV) {
+                field.getStyleClass().clear();
+                field.getStyleClass().addAll("text-field", "text-input");
+            }};
+        field.focusedProperty().addListener(resetStyle);
     }
 }
