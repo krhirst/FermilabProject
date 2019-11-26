@@ -3,17 +3,11 @@ package editUsersPage;
 import adminPage.AdminView;
 import application.FermiConnector;
 import application.FermiEntry;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class EditUsersController {
@@ -23,17 +17,24 @@ public class EditUsersController {
     private FermiEntry user;
 
     @FXML
-    private Button addButton, homeButton, searchButton, deleteButton;
+    private TabPane tabPane;
+
+    @FXML
+    private Tab addTab, editTab, removeTab;
+
+    @FXML
+    private Button addButton, homeButton, removeTabSearchButton, editTabSearchButton, deleteButton, editButton;
 
     @FXML
     private TextField firstNameField, lastNameField, phoneField, seniorityField, hoursOfferedField,
-                        searchField;
+            removeTabSearchField, editTabSearchField, editFirstNameField, editLastNameField,
+            editPhoneField, editSeniorityField, editHoursField;
 
     @FXML
     private CheckBox bisonProgramCheckBox, adminCheckBox;
 
     @FXML
-    private Label result, firstNameText, lastNameText, phoneText, seniorityText, hoursText, removeResult;
+    private Label result, firstNameText, lastNameText, phoneText, seniorityText, hoursText, removeResult, editResult;
 
     public EditUsersController() {
     }
@@ -71,23 +72,33 @@ public class EditUsersController {
     }
 
     @FXML
-    private void startSearch() {
-        String entry = searchField.getText();
-        user = searchUsers(entry);
-        if (user == null) {
-            firstNameText.setText("null");
-            lastNameText.setText("null");
-            phoneText.setText("null");
-            seniorityText.setText("null");
-            hoursText.setText("null");
-        } else {
-            firstNameText.setText(user.getFirstName());
-            lastNameText.setText(user.getLastName());
-            phoneText.setText(user.getPhone());
-            seniorityText.setText(user.getSeniority().toString());
-            hoursText.setText(user.getOvertime().toString());
+    private void displayUserFromSearch() {
+        if (tabPane.getSelectionModel().getSelectedItem().getId().equals("editTab")) {
+            String entry = editTabSearchField.getText();
+            user = searchUsers(entry);
+            setTextFields();
+        } else if (tabPane.getSelectionModel().getSelectedItem().getId().equals("removeTab")) {
+            String entry = removeTabSearchField.getText();
+            user = searchUsers(entry);
+            setTextLabels();
         }
+        // TODO: check if user is null and display that user was not found
+    }
 
+    private void setTextFields() {
+        editFirstNameField.setText(user.getFirstName());
+        editLastNameField.setText(user.getLastName());
+        editPhoneField.setText(user.getPhone());
+        editSeniorityField.setText(user.getSeniority().toString());
+        editHoursField.setText(user.getOvertime().toString());
+    }
+
+    private void setTextLabels() {
+        firstNameText.setText(user.getFirstName());
+        lastNameText.setText(user.getLastName());
+        phoneText.setText(user.getPhone());
+        seniorityText.setText(user.getSeniority().toString());
+        hoursText.setText(user.getOvertime().toString());
     }
 
     private FermiEntry searchUsers(String entry) {
@@ -98,6 +109,31 @@ public class EditUsersController {
             }
         }
         return user;
+    }
+
+    @FXML
+    private void editUser() {
+        int originalSeniority = user.getSeniority();
+
+        String fName = editFirstNameField.getText();
+        String lName = editLastNameField.getText();
+        String phone = editPhoneField.getText();
+        Double hours = Double.parseDouble(editHoursField.getText());
+        Integer seniority = Integer.parseInt(editSeniorityField.getText());
+
+        user.setFirstName(fName);
+        user.setLastName(lName);
+        user.setPhone(phone);
+        user.setOvertime(hours);
+        user.setSeniority(seniority);
+
+        if (db.edit(user, originalSeniority)) {
+            String str = String.format("User: %s %s was updated.", user.getFirstName(), user.getLastName());
+            editResult.setText(str);
+        } else {
+            String str = String.format("Error updating user: %s %s.", user.getFirstName(), user.getLastName());
+            editResult.setText(str);
+        }
     }
 
     @FXML
