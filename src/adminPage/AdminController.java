@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.print.*;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -82,15 +83,15 @@ public class AdminController {
 
     @FXML
     private void printPage() {
-        Pane root = (Pane) printButton.getParent().getParent();
+        Node root = dataTable;
         PrinterJob job = PrinterJob.createPrinterJob();
 
         if (job != null && job.showPrintDialog(printButton.getScene().getWindow())) {
             Printer printer = job.getPrinter();
             PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.HARDWARE_MINIMUM);
 
-            double width = 1000;
-            double height = 1200;
+            double width = 600;
+            double height = 800;
 
             PrintResolution resolution = job.getJobSettings().getPrintResolution();
 
