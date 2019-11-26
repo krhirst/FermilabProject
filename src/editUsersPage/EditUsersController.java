@@ -3,11 +3,13 @@ package editUsersPage;
 import adminPage.AdminView;
 import application.FermiConnector;
 import application.FermiEntry;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 
 public class EditUsersController {
@@ -194,19 +196,29 @@ public class EditUsersController {
         }
     }
 
-    private boolean validateString(TextField text) {
+    private boolean validateString(TextField field) {
+        String text = field.getText();
+        if (text.isEmpty() || !Pattern.matches("[A-Za-z]+\\s?[A-Za-z]*", text)) {
+            ChangeListener resetStyle = (observableValue, oldV, newV) -> {
+            if ((boolean)newV) {
+                field.getStyleClass().clear();
+                field.getStyleClass().addAll("text-field", "text-input");
+            }};
+            field.focusedProperty().addListener(resetStyle);
+            return false;
+        };
         return true;
     }
 
-    private boolean validatePhone(TextField text) {
+    private boolean validatePhone(TextField field) {
         return false;
     }
 
-    private boolean validateSeniority(TextField text) {
+    private boolean validateSeniority(TextField field) {
         return false;
     }
 
-    private boolean validateHours(TextField text) {
+    private boolean validateHours(TextField field) {
         return false;
     }
 }
