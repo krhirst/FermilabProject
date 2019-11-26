@@ -45,25 +45,6 @@ public class EditUsersController {
     }
 
     @FXML
-    private void addUser() {
-        String fName = firstNameField.getText();
-        String lName = lastNameField.getText();
-        String phone = phoneField.getText();
-        Double hours = Double.parseDouble(hoursOfferedField.getText());
-        Integer seniority = Integer.parseInt(seniorityField.getText());
-        Boolean bison = bisonProgramCheckBox.isSelected();
-
-        FermiEntry entry = new FermiEntry(fName, lName, phone, hours, seniority, bison);
-
-        if (db.add(entry)) {
-            result.setText("Employee Added");
-        } else {
-            result.setText("Action failed");
-        }
-
-    }
-
-    @FXML
     private void showHome() throws Exception {
         Stage stage = (Stage) homeButton.getScene().getWindow();
 
@@ -72,15 +53,42 @@ public class EditUsersController {
     }
 
     @FXML
+    private void addUser() {
+        if (validateEntries()) {
+            String fName = firstNameField.getText();
+            String lName = lastNameField.getText();
+            String phone = phoneField.getText();
+            Double hours = Double.parseDouble(hoursOfferedField.getText());
+            Integer seniority = Integer.parseInt(seniorityField.getText());
+            Boolean bison = bisonProgramCheckBox.isSelected();
+
+            FermiEntry entry = new FermiEntry(fName, lName, phone, hours, seniority, bison);
+
+            if (db.add(entry)) {
+                result.setText("Employee Added");
+            } else {
+                result.setText("Action failed");
+            }
+        } else {
+            // TODO: Identify invalid fields
+        }
+    }
+
+    @FXML
     private void displayUserFromSearch() {
         if (tabPane.getSelectionModel().getSelectedItem().getId().equals("editTab")) {
-            String entry = editTabSearchField.getText();
-            user = searchUsers(entry);
-            setTextFields();
+            if (validateString(editTabSearchField)) {
+                String entry = editTabSearchField.getText();
+                user = searchUsers(entry);
+                setTextFields();
+            }
+
         } else if (tabPane.getSelectionModel().getSelectedItem().getId().equals("removeTab")) {
-            String entry = removeTabSearchField.getText();
-            user = searchUsers(entry);
-            setTextLabels();
+            if (validateString(removeTabSearchField)) {
+                String entry = removeTabSearchField.getText();
+                user = searchUsers(entry);
+                setTextLabels();
+            }
         }
         // TODO: check if user is null and display that user was not found
     }
@@ -113,27 +121,30 @@ public class EditUsersController {
 
     @FXML
     private void editUser() {
-        int originalSeniority = user.getSeniority();
+        if (validateEntries()) {
+            int originalSeniority = user.getSeniority();
 
-        String fName = editFirstNameField.getText();
-        String lName = editLastNameField.getText();
-        String phone = editPhoneField.getText();
-        Double hours = Double.parseDouble(editHoursField.getText());
-        Integer seniority = Integer.parseInt(editSeniorityField.getText());
+            String fName = editFirstNameField.getText();
+            String lName = editLastNameField.getText();
+            String phone = editPhoneField.getText();
+            Double hours = Double.parseDouble(editHoursField.getText());
+            Integer seniority = Integer.parseInt(editSeniorityField.getText());
 
-        user.setFirstName(fName);
-        user.setLastName(lName);
-        user.setPhone(phone);
-        user.setOvertime(hours);
-        user.setSeniority(seniority);
+            user.setFirstName(fName);
+            user.setLastName(lName);
+            user.setPhone(phone);
+            user.setOvertime(hours);
+            user.setSeniority(seniority);
 
-        if (db.edit(user, originalSeniority)) {
-            String str = String.format("User: %s %s was updated.", user.getFirstName(), user.getLastName());
-            editResult.setText(str);
-        } else {
-            String str = String.format("Error updating user: %s %s.", user.getFirstName(), user.getLastName());
-            editResult.setText(str);
+            if (db.edit(user, originalSeniority)) {
+                String str = String.format("User: %s %s was updated.", user.getFirstName(), user.getLastName());
+                editResult.setText(str);
+            } else {
+                String str = String.format("Error updating user: %s %s.", user.getFirstName(), user.getLastName());
+                editResult.setText(str);
+            }
         }
+
     }
 
     @FXML
@@ -145,5 +156,57 @@ public class EditUsersController {
             String str = String.format("Error deleting user: %s %s.", user.getFirstName(), user.getLastName());
             removeResult.setText(str);
         }
+    }
+
+    private boolean validateEntries() {
+        ArrayList<TextField> invalidEntries = new ArrayList<>();
+        if (tabPane.getSelectionModel().getSelectedItem().getId().equals("addTab")) {
+            if (!validateString(firstNameField))
+                invalidEntries.add(firstNameField);
+            if (!validateString(lastNameField))
+                invalidEntries.add(lastNameField);
+            if (!validatePhone(phoneField))
+                invalidEntries.add(phoneField);
+            if (!validateSeniority(seniorityField))
+                invalidEntries.add(seniorityField);
+            if (!validateHours(hoursOfferedField))
+                invalidEntries.add(hoursOfferedField);
+        } else if (tabPane.getSelectionModel().getSelectedItem().getId().equals("editTab")) {
+            if (!validateString(editFirstNameField))
+                invalidEntries.add(editFirstNameField);
+            if (!validateString(editLastNameField))
+                invalidEntries.add(editLastNameField);
+            if (!validatePhone(editPhoneField))
+                invalidEntries.add(editPhoneField);
+            if (!validateSeniority(editSeniorityField))
+                invalidEntries.add(editSeniorityField);
+            if (!validateHours(editHoursField))
+                invalidEntries.add(editHoursField);
+        }
+
+        if (invalidEntries.isEmpty()) {
+            return true;
+        } else {
+            for (TextField field: invalidEntries) {
+                field.getStyleClass().add("error");
+            }
+            return false;
+        }
+    }
+
+    private boolean validateString(TextField text) {
+        return true;
+    }
+
+    private boolean validatePhone(TextField text) {
+        return false;
+    }
+
+    private boolean validateSeniority(TextField text) {
+        return false;
+    }
+
+    private boolean validateHours(TextField text) {
+        return false;
     }
 }

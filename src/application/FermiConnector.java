@@ -62,7 +62,7 @@ public class FermiConnector {
 			stmt.setInt(5, entry.getSeniority());
 			stmt.setBoolean(6, entry.isInBison());
 			stmt.setInt(7, originalSeniority);
-			
+
 			stmt.execute();
 			return true;
 		} catch (SQLException e) {
