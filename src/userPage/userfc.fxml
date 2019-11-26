@@ -40,7 +40,10 @@
                <font>
                   <Font name="System Bold Italic" size="26.0" />
                </font></Button>
-            <Button fx:id="btn4" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
+            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logOut" prefHeight="90.0" prefWidth="104.0" text="Log Out">
+            	<font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font></Button>
             <Button fx:id="btn5" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
             <Button fx:id="btn6" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
          </children>

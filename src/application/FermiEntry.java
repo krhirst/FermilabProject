@@ -12,7 +12,7 @@ public class FermiEntry {
 	private SimpleIntegerProperty seniority;
 	private SimpleBooleanProperty inBison;
 	
-	public FermiEntry(String firstName, String lastName, String phone, Double overtime, Integer seniority, Boolean inBison) {
+	public FermiEntry(String firstName, String lastName, String phone, double overtime, int seniority, boolean inBison) {
 		this.firstName = new SimpleStringProperty(firstName);
 		this.lastName = new SimpleStringProperty(lastName);
 		this.phone = new SimpleStringProperty(phone);

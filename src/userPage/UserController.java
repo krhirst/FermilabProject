@@ -13,6 +13,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Scale;
+import javafx.stage.Stage;
+import login.LoginController;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,6 +47,9 @@ public class UserController {
 
     @FXML
     Button printButton;
+    
+    @FXML
+    Button logoutButton;
 
     public UserController() throws SQLException {
     }
@@ -111,6 +116,14 @@ public class UserController {
 
             root.getTransforms().remove(scale);
         }
+    }
+    
+    @FXML
+    private void logOut() throws Exception{
+    	Stage stage = (Stage) logoutButton.getScene().getWindow();
+
+        LoginController view = new LoginController();
+        view.showView(stage);
     }
 
 }
