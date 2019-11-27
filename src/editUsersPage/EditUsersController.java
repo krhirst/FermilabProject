@@ -165,7 +165,7 @@ public class EditUsersController {
     private String parsePhoneNumber(String text) {
         StringBuilder phoneNumber = new StringBuilder();
 
-        String areaCode = text.substring(0, 2);
+        String areaCode = text.substring(0, 3);
         String first3 = text.substring(3, 6);
         String last4 = text.substring(6);
 
