@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="620.0" stylesheets="@../application/defaultStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editUsersPage.EditUsersController">
+    <children>
+        <Text fill="#004c97" layoutX="125.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roads &amp; Grounds" wrappingWidth="240.2060546875">
+            <font>
+                <Font name="Helvetica" size="29.0" />
+            </font>
+        </Text>
+        <Text fill="#004c97" layoutX="147.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime List Application" wrappingWidth="182.2060546875">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <Hyperlink layoutX="485.0" layoutY="25.0" prefHeight="29.0" prefWidth="122.0" text="Account Settings" />
+        <VBox prefHeight="640.0" prefWidth="100.0">
+            <children>
+                <Button fx:id="homeButton" mnemonicParsing="false" onAction="#showHome" prefHeight="90.0" prefWidth="104.0">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Documents/icons/home3.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+                <Button fx:id="usersButton" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0">
+                    <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="63.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Documents/icons/user.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+                <Button fx:id="printButton" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0">
+                    <font>
+                        <Font name="System Bold Italic" size="26.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="63.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Documents/icons/print2.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+                <Button fx:id="btn4" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0">
+               <graphic>
+                  <ImageView fitHeight="63.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Documents/icons/logout2.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            </children>
+        </VBox>
+      <TabPane fx:id="tabPane" layoutX="138.0" layoutY="120.0" prefHeight="502.0" prefWidth="437.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="addTab" text="Add User">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="268.0" prefWidth="249.0">
+                     <children>
+                        <GridPane hgap="10.0" layoutX="1.0" prefHeight="268.0" prefWidth="426.0">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="139.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.0" minWidth="10.0" prefWidth="277.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="First Name">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <Label text="Last Name" GridPane.rowIndex="1" />
+                              <Label text="Phone" GridPane.rowIndex="2" />
+                              <Label text="Seniority" GridPane.rowIndex="3" />
+                              <Label text="Hours Offered" GridPane.rowIndex="4" />
+                              <TextField fx:id="firstNameField" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Only letters and up to one space" />
+                                 </tooltip></TextField>
+                              <TextField fx:id="lastNameField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Only letters and up to one space" />
+                                 </tooltip></TextField>
+                              <TextField fx:id="phoneField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <tooltip>
+                                    <Tooltip text="10 digits, no punctuation" />
+                                 </tooltip></TextField>
+                              <TextField fx:id="seniorityField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <tooltip>
+                                    <Tooltip text="Number greater than 0, no decimals" />
+                                 </tooltip></TextField>
+                              <TextField fx:id="hoursOfferedField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <tooltip>
+                                    <Tooltip text="Positive number" />
+                                 </tooltip></TextField>
+                           </children>
+                        </GridPane>
+                        <VBox alignment="CENTER" layoutX="10.0" layoutY="257.0" prefHeight="106.0" prefWidth="404.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="257.0">
+                           <children>
+                              <HBox prefHeight="42.0" prefWidth="404.0">
+                                 <children>
+                                    <CheckBox fx:id="adminCheckBox" mnemonicParsing="false" text="Administrator">
+                                       <padding>
+                                          <Insets left="70.0" right="20.0" />
+                                       </padding>
+                                    </CheckBox>
+                                    <CheckBox fx:id="bisonProgramCheckBox" alignment="CENTER" mnemonicParsing="false" prefHeight="17.0" prefWidth="175.0" text="Bison Feeding Program">
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </CheckBox>
+                                 </children>
+                              </HBox>
+                              <Button fx:id="addButton" mnemonicParsing="false" onAction="#addUser" text="Add Employee">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Button>
+                              <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="413.0" />
+                           </children>
+                        </VBox>
+                     </children>
+              </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="editTab" text="Edit User">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="87.0" layoutY="33.0" prefHeight="18.0" prefWidth="66.0" text="Search:" />
+                        <TextField fx:id="editTabSearchField" layoutX="173.0" layoutY="30.0" prefHeight="25.0" prefWidth="182.0">
+                           <tooltip>
+                              <Tooltip text="Search by last name" />
+                           </tooltip></TextField>
+                        <Button fx:id="editTabSearchButton" layoutX="174.0" layoutY="67.0" mnemonicParsing="false" onAction="#displayUserFromSearch" prefHeight="29.0" prefWidth="89.0" text="Search" />
+                        <GridPane hgap="10.0" layoutX="6.0" layoutY="103.0" prefHeight="268.0" prefWidth="426.0">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="139.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.0" minWidth="10.0" prefWidth="277.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="First Name">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <Label text="Last Name" GridPane.rowIndex="1" />
+                              <Label text="Seniority" GridPane.rowIndex="3" />
+                              <Label text="Hours Offered" GridPane.rowIndex="4" />
+                              <TextField fx:id="editFirstNameField" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Only letters and up to one space" />
+                                 </tooltip></TextField>
+                              <TextField fx:id="editLastNameField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Only letters and up to one space" />
+                                 </tooltip></TextField>
+                              <TextField fx:id="editPhoneField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <tooltip>
+                                    <Tooltip text="10 digits, no punctuation" />
+                                 </tooltip></TextField>
+                              <TextField fx:id="editSeniorityField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <tooltip>
+                                    <Tooltip text="Number greater than 0, no decimals" />
+                                 </tooltip></TextField>
+                              <TextField fx:id="editHoursField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <tooltip>
+                                    <Tooltip text="Positive number" />
+                                 </tooltip></TextField>
+                              <Label text="Phone" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
+                        <Button fx:id="editButton" layoutX="158.0" layoutY="379.0" mnemonicParsing="false" onAction="#editUser" prefHeight="39.0" prefWidth="122.0" text="Edit Employee" />
+                        <Label fx:id="editResult" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="427.0" prefHeight="17.0" prefWidth="437.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="removeTab" text="Remove User">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="389.0" prefWidth="426.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="97.0" layoutY="42.0" prefHeight="18.0" prefWidth="66.0" text="Search:" />
+                        <TextField fx:id="removeTabSearchField" layoutX="172.0" layoutY="38.0" prefHeight="25.0" prefWidth="182.0">
+                           <tooltip>
+                              <Tooltip text="Search by last name" />
+                           </tooltip></TextField>
+                        <Button fx:id="removeTabSearchButton" layoutX="174.0" layoutY="76.0" mnemonicParsing="false" onAction="#displayUserFromSearch" prefHeight="29.0" prefWidth="89.0" text="Search" />
+
+                        <GridPane hgap="10.0" layoutX="6.0" layoutY="105.0" prefHeight="268.0" prefWidth="426.0">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="139.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.0" minWidth="10.0" prefWidth="277.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="First Name:">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <Label text="Last Name:" GridPane.rowIndex="1" />
+                              <Label text="Seniority:" GridPane.rowIndex="3" />
+                              <Label text="Hours Offered:" GridPane.rowIndex="4" />
+                              <Label text="Phone:" GridPane.rowIndex="2" />
+                              <Label fx:id="firstNameText" GridPane.columnIndex="1" />
+                              <Label fx:id="lastNameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="phoneText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="seniorityText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="hoursText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                           </children>
+                        </GridPane>
+                        <Button layoutX="158.0" layoutY="373.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="39.0" prefWidth="122.0" text="Delete Employee" />
+                        <Label fx:id="removeResult" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="431.0" prefHeight="17.0" prefWidth="437.0" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <ImageView fitHeight="72.0" fitWidth="351.0" layoutX="14.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Documents/icons/fermi2.png" />
+         </image>
+      </ImageView>
+    </children>
+
+</Pane>
