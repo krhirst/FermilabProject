@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="100.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/fermiTrackerLogo.png" />
+            <Image url="@../resources/fermiTrackerLogo.png" />
          </image>
          <VBox.margin>
             <Insets />

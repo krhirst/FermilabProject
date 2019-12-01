@@ -43,7 +43,7 @@
                <graphic>
                   <ImageView fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../resources/home3.png" />
+                        <Image url="@../resources/home3.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -54,7 +54,7 @@
                <graphic>
                   <ImageView fitHeight="63.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../resources/user.png" />
+                        <Image url="@../resources/user.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -65,7 +65,7 @@
                <graphic>
                   <ImageView fitHeight="63.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../resources/print2.png" />
+                        <Image url="@../resources/print2.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -73,7 +73,7 @@
                <graphic>
                   <ImageView fitHeight="63.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../resources/logout2.png" />
+                        <Image url="@../resources/logout2.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -265,7 +265,7 @@
       </TabPane>
       <ImageView fitHeight="72.0" fitWidth="351.0" layoutX="14.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/fermi2.png" />
+            <Image url="@../resources/fermi2.png" />
          </image>
       </ImageView>
     </children>
