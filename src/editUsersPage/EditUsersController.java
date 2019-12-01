@@ -3,11 +3,15 @@ package editUsersPage;
 import adminPage.AdminView;
 import application.FermiConnector;
 import application.FermiEntry;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 
 public class EditUsersController {
@@ -45,25 +49,6 @@ public class EditUsersController {
     }
 
     @FXML
-    private void addUser() {
-        String fName = firstNameField.getText();
-        String lName = lastNameField.getText();
-        String phone = phoneField.getText();
-        Double hours = Double.parseDouble(hoursOfferedField.getText());
-        Integer seniority = Integer.parseInt(seniorityField.getText());
-        Boolean bison = bisonProgramCheckBox.isSelected();
-
-        FermiEntry entry = new FermiEntry(fName, lName, phone, hours, seniority, bison);
-
-        if (db.add(entry)) {
-            result.setText("Employee Added");
-        } else {
-            result.setText("Action failed");
-        }
-
-    }
-
-    @FXML
     private void showHome() throws Exception {
         Stage stage = (Stage) homeButton.getScene().getWindow();
 
@@ -72,15 +57,42 @@ public class EditUsersController {
     }
 
     @FXML
+    private void addUser() {
+        if (validateEntries()) {
+            String fName = firstNameField.getText();
+            String lName = lastNameField.getText();
+            String phone = parsePhoneNumber(phoneField.getText());
+            Double hours = Double.parseDouble(hoursOfferedField.getText());
+            Integer seniority = Integer.parseInt(seniorityField.getText());
+            Boolean bison = bisonProgramCheckBox.isSelected();
+
+            FermiEntry entry = new FermiEntry(fName, lName, phone, hours, seniority, bison);
+
+            if (db.add(entry)) {
+                result.setText("Employee Added");
+            } else {
+                result.setText("Action failed");
+            }
+        } else {
+            // TODO: Identify invalid fields
+        }
+    }
+
+    @FXML
     private void displayUserFromSearch() {
         if (tabPane.getSelectionModel().getSelectedItem().getId().equals("editTab")) {
-            String entry = editTabSearchField.getText();
-            user = searchUsers(entry);
-            setTextFields();
+            if (validateString(editTabSearchField)) {
+                String entry = editTabSearchField.getText();
+                user = searchUsers(entry);
+                setTextFields();
+            }
+
         } else if (tabPane.getSelectionModel().getSelectedItem().getId().equals("removeTab")) {
-            String entry = removeTabSearchField.getText();
-            user = searchUsers(entry);
-            setTextLabels();
+            if (validateString(removeTabSearchField)) {
+                String entry = removeTabSearchField.getText();
+                user = searchUsers(entry);
+                setTextLabels();
+            }
         }
         // TODO: check if user is null and display that user was not found
     }
@@ -113,27 +125,30 @@ public class EditUsersController {
 
     @FXML
     private void editUser() {
-        int originalSeniority = user.getSeniority();
+        if (validateEntries()) {
+            int originalSeniority = user.getSeniority();
 
-        String fName = editFirstNameField.getText();
-        String lName = editLastNameField.getText();
-        String phone = editPhoneField.getText();
-        Double hours = Double.parseDouble(editHoursField.getText());
-        Integer seniority = Integer.parseInt(editSeniorityField.getText());
+            String fName = editFirstNameField.getText();
+            String lName = editLastNameField.getText();
+            String phone = editPhoneField.getText();
+            Double hours = Double.parseDouble(editHoursField.getText());
+            Integer seniority = Integer.parseInt(editSeniorityField.getText());
 
-        user.setFirstName(fName);
-        user.setLastName(lName);
-        user.setPhone(phone);
-        user.setOvertime(hours);
-        user.setSeniority(seniority);
+            user.setFirstName(fName);
+            user.setLastName(lName);
+            user.setPhone(phone);
+            user.setOvertime(hours);
+            user.setSeniority(seniority);
 
-        if (db.edit(user, originalSeniority)) {
-            String str = String.format("User: %s %s was updated.", user.getFirstName(), user.getLastName());
-            editResult.setText(str);
-        } else {
-            String str = String.format("Error updating user: %s %s.", user.getFirstName(), user.getLastName());
-            editResult.setText(str);
+            if (db.edit(user, originalSeniority)) {
+                String str = String.format("User: %s %s was updated.", user.getFirstName(), user.getLastName());
+                editResult.setText(str);
+            } else {
+                String str = String.format("Error updating user: %s %s.", user.getFirstName(), user.getLastName());
+                editResult.setText(str);
+            }
         }
+
     }
 
     @FXML
@@ -145,5 +160,105 @@ public class EditUsersController {
             String str = String.format("Error deleting user: %s %s.", user.getFirstName(), user.getLastName());
             removeResult.setText(str);
         }
+    }
+
+    private String parsePhoneNumber(String text) {
+        StringBuilder phoneNumber = new StringBuilder();
+
+        String areaCode = text.substring(0, 3);
+        String first3 = text.substring(3, 6);
+        String last4 = text.substring(6);
+
+        phoneNumber.append("(" + areaCode + ")");
+        phoneNumber.append(first3 + "-" + last4);
+
+        return phoneNumber.toString();
+    }
+
+    private boolean validateEntries() {
+        ArrayList<TextField> invalidEntries = new ArrayList<>();
+        HashMap<TextField, Boolean> entries = new HashMap<TextField, Boolean>();
+
+        if (tabPane.getSelectionModel().getSelectedItem().getId().equals("addTab")) {
+            entries.put(firstNameField, validateString(firstNameField));
+            entries.put(lastNameField, validateString(lastNameField));
+            entries.put(phoneField, validatePhone(phoneField));
+            entries.put(seniorityField, validateSeniority(seniorityField));
+            entries.put(hoursOfferedField, validateHours(hoursOfferedField));
+        } else if (tabPane.getSelectionModel().getSelectedItem().getId().equals("editTab")) {
+            entries.put(editFirstNameField, validateString(editFirstNameField));
+            entries.put(editLastNameField, validateString(editLastNameField));
+            entries.put(editPhoneField, validatePhone(editPhoneField));
+            entries.put(editSeniorityField, validateSeniority(editSeniorityField));
+            entries.put(editHoursField, validateHours(editHoursField));
+        }
+
+        Set<TextField> keyset = entries.keySet();
+        for (TextField key : keyset) {
+            if (!entries.get(key))
+                invalidEntries.add(key);
+        }
+
+        if (invalidEntries.isEmpty()) {
+            return true;
+        } else {
+            for (TextField field: invalidEntries) {
+                field.getStyleClass().add("error");
+            }
+            return false;
+        }
+    }
+
+    private boolean validateString(TextField field) {
+        String text = field.getText();
+        if (text.isEmpty() || !Pattern.matches("[A-Za-z]+\\s?[A-Za-z]*", text)) {
+            setChangeListener(field);
+            return false;
+        };
+        return true;
+    }
+
+    private boolean validatePhone(TextField field) {
+        String text = field.getText();
+        if (text.isEmpty() || !Pattern.matches("[0-9]{10}", text)) {
+            setChangeListener(field);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateSeniority(TextField field) {
+        try {
+            int num = Integer.parseInt(field.getText());
+            if (num > 0) {
+                return true;
+            }
+        } catch (NumberFormatException e) {
+            setChangeListener(field);
+            return false;
+        }
+        return false;
+    }
+
+    private boolean validateHours(TextField field) {
+        try {
+            double num = Double.parseDouble(field.getText());
+            if (num >= 0) {
+                return true;
+            }
+        } catch (NumberFormatException e) {
+            setChangeListener(field);
+            return false;
+        }
+        return false;
+    }
+
+    private void setChangeListener(TextField field) {
+        ChangeListener resetStyle = (observableValue, oldV, newV) -> {
+            if ((boolean)newV) {
+                field.getStyleClass().clear();
+                field.getStyleClass().addAll("text-field", "text-input");
+            }};
+        field.focusedProperty().addListener(resetStyle);
     }
 }
