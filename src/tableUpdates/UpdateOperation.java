@@ -2,9 +2,7 @@ package tableUpdates;
 
 import application.FermiEntry;
 
-import java.lang.reflect.Field;
-import java.sql.Time;
-import java.util.HashMap;
+import java.lang.reflect.Method;
 import java.util.LinkedList;
 
 public class UpdateOperation extends Operation {
@@ -13,18 +11,18 @@ public class UpdateOperation extends Operation {
     private String firstName;
     private String lastName;
     private int seniority;
-    private LinkedList<ChangedField> changedFields;
+    private LinkedList<ChangedField> changedFields = new LinkedList<>();
 
-    public UpdateOperation(Time time, String firstName, String lastName, int seniority, LinkedList<ChangedField> changedFields) {
-        super(time);
+    public UpdateOperation(String firstName, String lastName, int seniority, LinkedList<ChangedField> changedFields) {
+        super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.seniority = seniority;
         this.changedFields = changedFields;
     }
 
-    public UpdateOperation(Time time, FermiEntry oldEntry, FermiEntry newEntry) {
-        super(time);
+    public UpdateOperation(FermiEntry oldEntry, FermiEntry newEntry) {
+        super();
         originalEntry = oldEntry;
         updatedEntry = newEntry;
 
@@ -68,22 +66,27 @@ public class UpdateOperation extends Operation {
     }
 
     private void setChangedFields() {
-        Field[] fields = originalEntry.getClass().getDeclaredFields();
-        String oldValue = null;
-        String newValue = null;
+        String[] fields = new String[] {"FirstName", "LastName", "Phone", "Overtime", "Seniority", "InBison"};
+        String[] oldValues = new String[] {originalEntry.getFirstName(), originalEntry.getLastName(), originalEntry.getPhone(),
+        originalEntry.getOvertime().toString(), originalEntry.getSeniority().toString(), originalEntry.isInBison().toString()};
+        String[] newValues = new String[] {updatedEntry.getFirstName(), updatedEntry.getLastName(), updatedEntry.getPhone(),
+                updatedEntry.getOvertime().toString(), updatedEntry.getSeniority().toString(), updatedEntry.isInBison().toString()};
 
         for (int i = 0; i < fields.length; i++) {
-            try {
-                oldValue = fields[i].get(originalEntry).toString();
-                newValue = fields[i].get(updatedEntry).toString();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-            if (oldValue != newValue) {
-                ChangedField changedField = new ChangedField(fields[i].getName(), oldValue, newValue);
+            if (!oldValues[i].equals(newValues[i])) {
+                ChangedField changedField = new ChangedField(fields[i], oldValues[i], newValues[i]);
                 changedFields.add(changedField);
             }
         }
 
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(String.format("%s,%s,%s,%s,%s,", this.getTime(), "update", this.firstName, this.lastName, this.seniority));
+        for (ChangedField cf : changedFields) {
+            sb.append(cf.toString() + ",");
+        }
+        return sb.toString();
     }
 }

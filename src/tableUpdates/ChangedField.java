@@ -34,4 +34,9 @@ public class ChangedField {
     public void setNewEntry(String newEntry) {
         this.newEntry = newEntry;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s:%s:%s", this.fieldName, this.oldEntry, this.newEntry);
+    }
 }

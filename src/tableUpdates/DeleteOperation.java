@@ -10,15 +10,15 @@ public class DeleteOperation extends Operation {
     private String lastName;
     private int seniority;
 
-    public DeleteOperation(Time time, String firstName, String lastName, int seniority) {
-        super(time);
+    public DeleteOperation(String firstName, String lastName, int seniority) {
+        super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.seniority = seniority;
     }
 
-    public DeleteOperation(Time time, FermiEntry entry) {
-        super(time);
+    public DeleteOperation(FermiEntry entry) {
+        super();
         this.entry = entry;
         this.firstName = entry.getFirstName();
         this.lastName = entry.getLastName();
@@ -47,5 +47,11 @@ public class DeleteOperation extends Operation {
 
     public void setSeniority(int seniority) {
         this.seniority = seniority;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(String.format("%s,%s,%s,%s,%s", this.getTime(), "delete", this.firstName, this.lastName, this.seniority));
+        return sb.toString();
     }
 }

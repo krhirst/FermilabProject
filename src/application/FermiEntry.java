@@ -81,13 +81,10 @@ public class FermiEntry {
 
 	@Override
 	public String toString() {
-		return "FermiEntry{" +
-				"name=" + firstName +
-				", phone=" + phone +
-				", overtime=" + overtime +
-				", seniority=" + seniority +
-				", inBison=" + inBison +
-				'}';
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("FirstName:%s,LastName:%s,Phone:%s,Overtime:%s,Seniority:%s,InBison:%s", getFirstName(),
+				getLastName(), getPhone(), getOvertime(), getSeniority(), isInBison()));
+		return sb.toString();
 	}
 
 	public static ArrayList<FermiEntry> getEmployees(FermiConnector dbConnection) {
