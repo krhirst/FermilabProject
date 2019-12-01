@@ -2,6 +2,8 @@ package tableUpdates;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -25,5 +27,24 @@ public class UpdateFileReader {
         }
 
         return stack;
+    }
+
+    public static Queue<Operation> getUpdatesAsQueue() {
+        Queue<Operation> queue = new LinkedList<>();
+
+        Scanner input = null;
+        File file = new File("updates.txt");
+        try {
+            input = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        while(input.hasNextLine()) {
+            Operation op = Operation.readFromFile(input.nextLine());
+            queue.add(op);
+        }
+        
+        return queue;
     }
 }
