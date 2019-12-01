@@ -5,8 +5,9 @@ import javafx.beans.property.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class FermiEntry {
+public class FermiEntry implements Iterable<FermiEntry> {
 	private SimpleStringProperty firstName, lastName, phone;
 	private SimpleDoubleProperty overtime;
 	private SimpleIntegerProperty seniority;
@@ -104,5 +105,10 @@ public class FermiEntry {
 		}
 
 		return data;
+	}
+
+	@Override
+	public Iterator<FermiEntry> iterator() {
+		return null;
 	}
 }
