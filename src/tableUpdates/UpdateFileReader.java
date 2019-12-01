@@ -9,42 +9,42 @@ import java.util.Stack;
 
 public class UpdateFileReader {
 
-    public UpdateFileReader() {
-    }
+	public UpdateFileReader() {
+	}
 
-    public static Stack<Operation> getUpdatesAsStack() {
-        Stack<Operation> stack = new Stack<>();
-        Scanner input = null;
-        File file = new File("updates.txt");
-        try {
-            input = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        while(input.hasNextLine()) {
-            Operation op = Operation.readFromFile(input.nextLine());
-            stack.push(op);
-        }
+	public static Stack<Operation> getUpdatesAsStack() {
+		Stack<Operation> stack = new Stack<>();
+		Scanner input = null;
+		File file = new File("updates.txt");
+		try {
+			input = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		while (input.hasNextLine()) {
+			Operation op = Operation.readFromFile(input.nextLine());
+			stack.push(op);
+		}
 
-        return stack;
-    }
+		return stack;
+	}
 
-    public static Queue<Operation> getUpdatesAsQueue() {
-        Queue<Operation> queue = new LinkedList<>();
+	public static Queue<Operation> getUpdatesAsQueue() {
+		Queue<Operation> queue = new LinkedList<>();
 
-        Scanner input = null;
-        File file = new File("updates.txt");
-        try {
-            input = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+		Scanner input = null;
+		File file = new File("updates.txt");
+		try {
+			input = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 
-        while(input.hasNextLine()) {
-            Operation op = Operation.readFromFile(input.nextLine());
-            queue.add(op);
-        }
-        
-        return queue;
-    }
+		while (input.hasNextLine()) {
+			Operation op = Operation.readFromFile(input.nextLine());
+			queue.add(op);
+		}
+
+		return queue;
+	}
 }
