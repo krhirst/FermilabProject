@@ -1,9 +1,12 @@
 package application;
 
 import login.Login;
+import tableUpdates.Operation;
+import tableUpdates.UpdateFileReader;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class FermiConnector {
 		private final String DB_URL = "jdbc:mysql://45.55.136.114:3306/fermitracker";
@@ -23,7 +26,7 @@ public class FermiConnector {
 
 	public FermiConnector() {
 		try {
-			conn = DriverManager.getConnection(DB_URL, "fermitracker", "fermi123");
+			conn = DriverManager.getConnection(DB_URL, "username", "password");
 		} catch (SQLException ex) {
 			System.out.println("ERROR: " + ex.getMessage());
 		}
@@ -95,5 +98,11 @@ public class FermiConnector {
 		}
 
 		return result;
+	}
+
+	public String getUpdateTime() {
+		Stack stack = UpdateFileReader.getUpdatesAsStack();
+		Operation op = (Operation) stack.peek();
+		return op.getTime();
 	}
 }

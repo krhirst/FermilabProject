@@ -7,6 +7,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import tableUpdates.AddOperation;
+import tableUpdates.DeleteOperation;
+import tableUpdates.UpdateOperation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,11 +73,11 @@ public class EditUsersController {
 
             if (db.add(entry)) {
                 result.setText("Employee Added");
+                AddOperation op = new AddOperation(entry);
+                op.addToFile(op.toString());
             } else {
                 result.setText("Action failed");
             }
-        } else {
-            // TODO: Identify invalid fields
         }
     }
 
@@ -100,9 +103,19 @@ public class EditUsersController {
     private void setTextFields() {
         editFirstNameField.setText(user.getFirstName());
         editLastNameField.setText(user.getLastName());
-        editPhoneField.setText(user.getPhone());
+        editPhoneField.setText(stripPhoneNumber(user.getPhone()));
         editSeniorityField.setText(user.getSeniority().toString());
         editHoursField.setText(user.getOvertime().toString());
+    }
+
+    private String stripPhoneNumber(String phone) {
+        StringBuilder sb = new StringBuilder();
+        String[] splitString = phone.split("\\(");
+        splitString = splitString[1].split("\\)");
+        sb.append(splitString[0]);
+        splitString = splitString[1].split("-");
+        sb.append(splitString[0] + splitString[1]);
+        return sb.toString();
     }
 
     private void setTextLabels() {
@@ -126,11 +139,12 @@ public class EditUsersController {
     @FXML
     private void editUser() {
         if (validateEntries()) {
-            int originalSeniority = user.getSeniority();
+            FermiEntry originalEntry = new FermiEntry(user.getFirstName(), user.getLastName(), user.getPhone(),
+                    user.getOvertime(), user.getSeniority(), user.isInBison());
 
             String fName = editFirstNameField.getText();
             String lName = editLastNameField.getText();
-            String phone = editPhoneField.getText();
+            String phone = parsePhoneNumber(editPhoneField.getText());
             Double hours = Double.parseDouble(editHoursField.getText());
             Integer seniority = Integer.parseInt(editSeniorityField.getText());
 
@@ -140,9 +154,11 @@ public class EditUsersController {
             user.setOvertime(hours);
             user.setSeniority(seniority);
 
-            if (db.edit(user, originalSeniority)) {
+            if (db.edit(user, originalEntry.getSeniority())) {
                 String str = String.format("User: %s %s was updated.", user.getFirstName(), user.getLastName());
                 editResult.setText(str);
+                UpdateOperation op = new UpdateOperation(originalEntry, user);
+                op.addToFile(op.toString());
             } else {
                 String str = String.format("Error updating user: %s %s.", user.getFirstName(), user.getLastName());
                 editResult.setText(str);
@@ -156,6 +172,8 @@ public class EditUsersController {
         if (db.remove(user)) {
             String str = String.format("User: %s %s was deleted.", user.getFirstName(), user.getLastName());
             removeResult.setText(str);
+            DeleteOperation op = new DeleteOperation(user);
+            op.addToFile(op.toString());
         } else {
             String str = String.format("Error deleting user: %s %s.", user.getFirstName(), user.getLastName());
             removeResult.setText(str);
