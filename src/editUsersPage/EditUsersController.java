@@ -6,6 +6,7 @@ import application.FermiEntry;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import reportPage.ReportsView;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class EditUsersController {
     private Tab addTab, editTab, removeTab;
 
     @FXML
-    private Button addButton, homeButton, removeTabSearchButton, editTabSearchButton, deleteButton, editButton;
+    private Button addButton, homeButton, removeTabSearchButton, editTabSearchButton, deleteButton, editButton, reportsButton;
 
     @FXML
     private TextField firstNameField, lastNameField, phoneField, seniorityField, hoursOfferedField,
@@ -68,6 +69,14 @@ public class EditUsersController {
         Stage stage = (Stage) homeButton.getScene().getWindow();
 
         AdminView view = new AdminView();
+        view.showView(stage);
+    }
+    
+    @FXML
+    private void showReports() throws Exception {
+        Stage stage = (Stage) reportsButton.getScene().getWindow();
+
+        ReportsView view = new ReportsView();
         view.showView(stage);
     }
 
