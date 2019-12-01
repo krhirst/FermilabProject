@@ -13,14 +13,18 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import login.LoginController;
+import tableUpdates.Operation;
+import tableUpdates.UpdateFileReader;
 
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Stack;
 
 public class AdminController {
     private FermiConnector base = new FermiConnector();
@@ -29,13 +33,7 @@ public class AdminController {
     private TableView<FermiEntry> dataTable;
 
     @FXML
-    TableColumn<FermiEntry, String> firstNameCol;
-
-    @FXML
-    TableColumn<FermiEntry, String> lastNameCol;
-
-    @FXML
-    TableColumn<FermiEntry, String> phoneCol;
+    TableColumn<FermiEntry, String> firstNameCol, lastNameCol, phoneCol;
 
     @FXML
     TableColumn<FermiEntry, Double> overCol;
@@ -47,10 +45,10 @@ public class AdminController {
     TableColumn<FermiEntry, Boolean> bisonCol;
 
     @FXML
-    private Button printButton;
-    
+    private Button printButton, logoutButton;
+
     @FXML
-    private Button logoutButton;
+    Text updateText;
 
     public AdminController() {
 
@@ -66,6 +64,8 @@ public class AdminController {
         bisonCol.setCellValueFactory(new PropertyValueFactory("inBison"));
 
         dataTable.setItems(getData());
+
+        updateText.setText("Updated: " + base.getUpdateTime());
     }
 
     private ObservableList<FermiEntry> getData() {

@@ -33,6 +33,14 @@ public class UpdateOperation extends Operation {
         setChangedFields();
     }
 
+    public UpdateOperation(String firstName, String lastName, String seniority, LinkedList<ChangedField> changedFields) {
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.seniority = Integer.parseInt(seniority);
+        this.changedFields = changedFields;
+    }
+
     public String getFirstName() {
         return firstName;
     }

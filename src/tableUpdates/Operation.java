@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 
 public abstract class Operation {
     private String time;
@@ -57,7 +58,7 @@ public abstract class Operation {
         return false;
     }
 
-    public Operation readFromFile(String data) {
+    public static Operation readFromFile(String data) {
         Operation op = null;
 
         String[] splitString = data.split(",");
@@ -73,36 +74,32 @@ public abstract class Operation {
         return op;
     }
 
-    private Operation parseAddOperation(String[] splitString) {
+    private static Operation parseAddOperation(String[] splitString) {
         FermiEntry entry = parseEntry(splitString);
         return new AddOperation(entry);
     }
 
-    private Operation parseUpdateOperation(String[] splitString) {
-        ArrayList<String> newValues = new ArrayList<>();
-        FermiEntry originalEntry = parseEntry(splitString);
-        FermiEntry updatedEntry = null;
+    private static Operation parseUpdateOperation(String[] splitString) {
+        LinkedList<ChangedField> fields = new LinkedList<>();
+        String firstName = splitString[2];
+        String lastName = splitString[3];
+        String seniority = splitString[4];
 
-        for (int i = 2; i < splitString.length; i++) {
+        for (int i = 5; i < splitString.length; i++) {
             String[] fieldSplit = splitString[i].split(":");
-            newValues.add(fieldSplit[2]);
+            ChangedField cf = new ChangedField(fieldSplit[0], fieldSplit[1], fieldSplit[2]);
+            fields.add(cf);
         }
-        try {
-            updatedEntry = new FermiEntry(newValues.get(0), newValues.get(1), newValues.get(2), Double.parseDouble(newValues.get(3)),
-                    Integer.parseInt(newValues.get(4)), Boolean.parseBoolean(newValues.get(5)));
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        return new UpdateOperation(originalEntry, updatedEntry);
+
+        return new UpdateOperation(firstName, lastName, seniority, fields);
     }
 
-    private Operation parseDeleteOperation(String[] splitString) {
+    private static Operation parseDeleteOperation(String[] splitString) {
         ArrayList<String> values = new ArrayList<>();
         Operation op = null;
 
         for (int i = 2; i < splitString.length; i++) {
-            String[] fieldSplit = splitString[i].split(":");
-            values.add(fieldSplit[1]);
+            values.add(splitString[i]);
         }
         try {
             op = new DeleteOperation(values.get(0), values.get(1), Integer.parseInt(values.get(2)));
@@ -112,7 +109,7 @@ public abstract class Operation {
         return op;
     }
 
-    private FermiEntry parseEntry(String[] splitString) {
+    private static FermiEntry parseEntry(String[] splitString) {
         ArrayList<String> values = new ArrayList<>();
         FermiEntry entry = null;
         for (int i = 2; i < splitString.length; i++) {
