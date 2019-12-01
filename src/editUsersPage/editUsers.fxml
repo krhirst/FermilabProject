@@ -45,7 +45,10 @@
                     <font>
                         <Font name="System Bold Italic" size="26.0" />
                     </font></Button>
-                <Button fx:id="btn4" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
+                <Button fx:id="reportsButton" mnemonicParsing="false" onAction="#showReports" prefHeight="90.0" prefWidth="104.0" text="Reports">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font></Button>
                 <Button fx:id="btn5" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
                 <Button fx:id="btn6" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
             </children>
@@ -69,19 +72,19 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="First Name">
+                              <Label text="First Name: ">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <Label text="Last Name" GridPane.rowIndex="1" />
-                              <Label text="Seniority" GridPane.rowIndex="3" />
-                              <Label text="Hours Offered" GridPane.rowIndex="4" />
+                              <Label text="Last Name: " GridPane.rowIndex="1" />
+                              <Label text="Seniority: " GridPane.rowIndex="3" />
+                              <Label text="Hours Offered: " GridPane.rowIndex="4" />
                               <TextField fx:id="firstNameField" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1" />
                               <TextField fx:id="lastNameField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="seniorityField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <TextField fx:id="hoursOfferedField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Label text="Phone" GridPane.rowIndex="2" />
+                              <Label text="Phone: " GridPane.rowIndex="2" />
                               <TextField fx:id="phoneField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
@@ -117,9 +120,9 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER_RIGHT" layoutX="87.0" layoutY="33.0" prefHeight="18.0" prefWidth="66.0" text="Search:" />
-                        <TextField fx:id="editTabSearchField" layoutX="173.0" layoutY="30.0" prefHeight="25.0" prefWidth="182.0" />
-                        <Button fx:id="editTabSearchButton" layoutX="174.0" layoutY="67.0" mnemonicParsing="false" onAction="#displayUserFromSearch" prefHeight="29.0" prefWidth="89.0" text="Search" />
+                        <Label alignment="CENTER_RIGHT" layoutX="80.0" layoutY="33.0" prefHeight="18.0" prefWidth="66.0" text="Search: " />
+                        <TextField fx:id="editTabSearchField" layoutX="155.0" layoutY="30.0" prefHeight="25.0" prefWidth="150.0" />
+                        <Button fx:id="editTabSearchButton" layoutX="155.0" layoutY="67.0" mnemonicParsing="false" onAction="#displayUserFromSearch" prefHeight="29.0" prefWidth="89.0" text="Search" />
                         <GridPane hgap="10.0" layoutX="6.0" layoutY="103.0" prefHeight="268.0" prefWidth="426.0">
                            <columnConstraints>
                               <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="139.0" />
@@ -133,19 +136,19 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label text="First Name">
+                              <Label text="First Name: ">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <Label text="Last Name" GridPane.rowIndex="1" />
-                              <Label text="Seniority" GridPane.rowIndex="3" />
-                              <Label text="Hours Offered" GridPane.rowIndex="4" />
+                              <Label text="Last Name: " GridPane.rowIndex="1" />
+                              <Label text="Seniority: " GridPane.rowIndex="3" />
+                              <Label text="Hours Offered: " GridPane.rowIndex="4" />
                               <TextField fx:id="editFirstNameField" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1" />
                               <TextField fx:id="editLastNameField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="editSeniorityField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <TextField fx:id="editHoursField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Label text="Phone" GridPane.rowIndex="2" />
+                              <Label text="Phone: " GridPane.rowIndex="2" />
                               <TextField fx:id="editPhoneField" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
@@ -158,9 +161,9 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="389.0" prefWidth="426.0">
                      <children>
-                        <Label alignment="CENTER_RIGHT" layoutX="97.0" layoutY="42.0" prefHeight="18.0" prefWidth="66.0" text="Search:" />
-                        <TextField fx:id="removeTabSearchField" layoutX="172.0" layoutY="38.0" prefHeight="25.0" prefWidth="182.0" />
-                        <Button fx:id="removeTabSearchButton" layoutX="174.0" layoutY="76.0" mnemonicParsing="false" onAction="#displayUserFromSearch" prefHeight="29.0" prefWidth="89.0" text="Search" />
+                        <Label alignment="CENTER_RIGHT" layoutX="80.0" layoutY="33.0" prefHeight="18.0" prefWidth="66.0" text="Search: " />
+                        <TextField fx:id="removeTabSearchField" layoutX="155.0" layoutY="30.0" prefHeight="25.0" prefWidth="150.0" />
+                        <Button fx:id="removeTabSearchButton" layoutX="155.0" layoutY="67.0" mnemonicParsing="false" onAction="#displayUserFromSearch" prefHeight="29.0" prefWidth="89.0" text="Search" />
 
                         <GridPane hgap="10.0" layoutX="6.0" layoutY="105.0" prefHeight="268.0" prefWidth="426.0">
                            <columnConstraints>
@@ -175,15 +178,15 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label text="First Name:">
+                              <Label text="First Name: ">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <Label text="Last Name:" GridPane.rowIndex="1" />
-                              <Label text="Seniority:" GridPane.rowIndex="3" />
-                              <Label text="Hours Offered:" GridPane.rowIndex="4" />
-                              <Label text="Phone:" GridPane.rowIndex="2" />
+                              <Label text="Last Name: " GridPane.rowIndex="1" />
+                              <Label text="Seniority: " GridPane.rowIndex="3" />
+                              <Label text="Hours Offered: " GridPane.rowIndex="4" />
+                              <Label text="Phone: " GridPane.rowIndex="2" />
                               <Label fx:id="firstNameText" GridPane.columnIndex="1" />
                               <Label fx:id="lastNameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Label fx:id="phoneText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
