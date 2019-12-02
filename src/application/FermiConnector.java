@@ -1,9 +1,6 @@
 package application;
 
-import login.Login;
-
 import java.sql.*;
-import java.util.ArrayList;
 
 public class FermiConnector {
 		private final String DB_URL = "jdbc:mysql://45.55.136.114:3306/fermitracker";
