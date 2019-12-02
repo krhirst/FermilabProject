@@ -8,76 +8,51 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0"
-	prefWidth="721.0" xmlns="http://javafx.com/javafx/10.0.1"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="adminPage.AdminController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adminPage.AdminController">
 	<children>
-		<TableView fx:id="dataTable" layoutX="118.0" layoutY="95.0"
-			prefHeight="732.0" prefWidth="581.0">
+		<TableView fx:id="dataTable" layoutX="118.0" layoutY="95.0" prefHeight="732.0" prefWidth="581.0">
 			<columns>
-				<TableColumn fx:id="firstNameCol"
-					prefWidth="98.40003204345703" text="First Name" />
-				<TableColumn fx:id="lastNameCol"
-					prefWidth="90.39996337890625" text="Last Name" />
-				<TableColumn fx:id="phoneCol"
-					prefWidth="87.20001220703125" text="Phone" />
-				<TableColumn id="overCol" fx:id="overCol" minWidth="0.0"
-					prefWidth="71.20001220703125" text="Hours" />
-				<TableColumn id="senCol" fx:id="senCol"
-					prefWidth="60.000030517578125" text="Seniority" />
-				<TableColumn id="bisonCol" fx:id="bisonCol"
-					prefWidth="47.199951171875" text="BFP" />
+				<TableColumn fx:id="firstNameCol" prefWidth="98.40003204345703" text="First Name" />
+				<TableColumn fx:id="lastNameCol" prefWidth="90.39996337890625" text="Last Name" />
+				<TableColumn fx:id="phoneCol" prefWidth="87.20001220703125" text="Phone" />
+				<TableColumn id="overCol" fx:id="overCol" minWidth="0.0" prefWidth="71.20001220703125" text="Hours" />
+				<TableColumn id="senCol" fx:id="senCol" prefWidth="60.000030517578125" text="Seniority" />
+				<TableColumn id="bisonCol" fx:id="bisonCol" prefWidth="47.199951171875" text="BFP" />
 			</columns>
 		</TableView>
-		<Text fill="#004c97" layoutX="125.0" layoutY="52.0"
-			strokeType="OUTSIDE" strokeWidth="0.0" text="Roads &amp; Grounds"
-			wrappingWidth="240.2060546875">
+		<Text fill="#004c97" layoutX="125.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roads &amp; Grounds" wrappingWidth="240.2060546875">
 			<font>
 				<Font name="Helvetica" size="29.0" />
 			</font>
 		</Text>
-		<Text fill="#004c97" layoutX="125.0" layoutY="65.0"
-			strokeType="OUTSIDE" strokeWidth="0.0"
-			text="Overtime List Application" wrappingWidth="182.2060546875">
+		<Text fill="#004c97" layoutX="125.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime List Application" wrappingWidth="182.2060546875">
 			<font>
 				<Font size="15.0" />
 			</font>
 		</Text>
 		<VBox prefHeight="640.0" prefWidth="100.0">
 			<children>
-				<Button fx:id="btn1" mnemonicParsing="false"
-					prefHeight="90.0" prefWidth="104.0" />
-				<Button fx:id="usersButton" mnemonicParsing="false"
-					onAction="#editUsers" prefHeight="90.0" prefWidth="104.0"
-					text="Users">
+				<Button fx:id="btn1" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
+				<Button fx:id="usersButton" mnemonicParsing="false" onAction="#editUsers" prefHeight="90.0" prefWidth="104.0" text="Users">
 					<font>
 						<Font name="System Bold Italic" size="24.0" />
 					</font>
 				</Button>
-				<Button fx:id="printButton" mnemonicParsing="false"
-					onAction="#printPage" prefHeight="90.0" prefWidth="104.0"
-					text="Print">
+				<Button fx:id="printButton" mnemonicParsing="false" onAction="#printPage" prefHeight="90.0" prefWidth="104.0" text="Print">
 					<font>
 						<Font name="System Bold Italic" size="26.0" />
-					</font>
-				</Button>
-				<Button fx:id="logoutButton" mnemonicParsing="false"
-					onAction="#logOut" prefHeight="90.0" prefWidth="104.0"
-					text="Log Out">
+               </font></Button>
+            <Button fx:id="reportsButton" mnemonicParsing="false" onAction="#showReports" prefHeight="90.0" prefWidth="104.0" text="Reports">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font></Button>
+            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logOut" prefHeight="90.0" prefWidth="104.0" text="Log Out">
 					<font>
 						<Font name="System Bold Italic" size="18.0" />
-					</font>
-				</Button>
-				<Button fx:id="btn5" mnemonicParsing="false"
-					prefHeight="90.0" prefWidth="104.0" />
-				<Button fx:id="btn6" mnemonicParsing="false"
-					prefHeight="90.0" prefWidth="104.0" />
+            	</font></Button>
+            <Button fx:id="btn6" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
 			</children>
 		</VBox>
-		<Text fx:id="updateText" layoutX="491.0" layoutY="51.0"
-			strokeType="OUTSIDE" strokeWidth="0.0"
-			text="Updated: 11/7/19 08:51AM" wrappingWidth="202.13668823242188" />
+		<Text fx:id="updateText" layoutX="491.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Updated: 11/7/19 08:51AM" wrappingWidth="202.13668823242188" />
 	</children>
 </Pane>
