@@ -11,8 +11,9 @@ public class FermiEntry {
 	private SimpleDoubleProperty overtime;
 	private SimpleIntegerProperty seniority;
 	private SimpleBooleanProperty inBison;
-	
-	public FermiEntry(String firstName, String lastName, String phone, double overtime, int seniority, boolean inBison) {
+
+	public FermiEntry(String firstName, String lastName, String phone, double overtime, int seniority,
+			boolean inBison) {
 		this.firstName = new SimpleStringProperty(firstName);
 		this.lastName = new SimpleStringProperty(lastName);
 		this.phone = new SimpleStringProperty(phone);
@@ -68,26 +69,24 @@ public class FermiEntry {
 	public void setInBison(boolean inBison) {
 		this.inBison = new SimpleBooleanProperty(inBison);
 	}
-	
+
 	public String tableFormat() {
 		int blInt;
-		
+
 		if (inBison.get())
 			blInt = 1;
 		else
 			blInt = 0;
-		return String.format("%s, %s, %f, %d, %d", firstName.getValue(), phone.getValue(), overtime.getValue(), seniority.getValue(), blInt);
+		return String.format("%s, %s, %f, %d, %d", firstName.getValue(), phone.getValue(), overtime.getValue(),
+				seniority.getValue(), blInt);
 	}
 
 	@Override
 	public String toString() {
-		return "FermiEntry{" +
-				"name=" + firstName +
-				", phone=" + phone +
-				", overtime=" + overtime +
-				", seniority=" + seniority +
-				", inBison=" + inBison +
-				'}';
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("FirstName:%s,LastName:%s,Phone:%s,Overtime:%s,Seniority:%s,InBison:%s", getFirstName(),
+				getLastName(), getPhone(), getOvertime(), getSeniority(), isInBison()));
+		return sb.toString();
 	}
 
 	public static ArrayList<FermiEntry> getEmployees(FermiConnector dbConnection) {

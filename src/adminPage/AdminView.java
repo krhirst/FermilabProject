@@ -9,18 +9,18 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class AdminView {
-    @FXML
-    private TableView<FermiEntry> dataTable;
+	@FXML
+	private TableView<FermiEntry> dataTable;
 
-    public AdminView() {
-    }
+	public AdminView() {
+	}
 
-    public void showView(Stage window) throws Exception {
-        Pane root = (Pane) FXMLLoader.load(getClass().getResource("adminPage.fxml"));
-        Scene scene = new Scene(root, 620, 640);
-        window.setTitle("Administrator");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
-    }
+	public void showView(Stage window) throws Exception {
+		Pane root = (Pane) FXMLLoader.load(getClass().getResource("adminPage.fxml"));
+		Scene scene = new Scene(root, 720, 880);
+		window.setTitle("Administrator");
+		window.setScene(scene);
+		window.setResizable(false);
+		window.show();
+	}
 }
