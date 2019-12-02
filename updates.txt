@@ -1,0 +1,4 @@
+2019-11-30 21:56,delete,Trevor,Johnson,28
+2019-11-30 21:57,add,FirstName:Gandalf,LastName:The Grey,Phone:(456)789-1235,Overtime:987.0,Seniority:1000,InBison:false
+2019-11-30 21:57,add,FirstName:Andy,LastName:Samberg,Phone:(456)789-1235,Overtime:100.0,Seniority:100,InBison:true
+2019-11-30 21:58,update,Kristen,Hirst,26,Phone:(12)123-1234:(318)123-4567,Overtime:178.5:180.5,
