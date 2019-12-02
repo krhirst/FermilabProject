@@ -18,99 +18,99 @@ import java.util.ArrayList;
 
 public class LoginController {
 
-    private FermiConnector db = new FermiConnector();
+	private FermiConnector db = new FermiConnector();
 
-    @FXML
-    private Button signInButton;
+	@FXML
+	private Button signInButton;
 
-    @FXML
-    private TextField username;
+	@FXML
+	private TextField username;
 
-    @FXML
-    private PasswordField password;
+	@FXML
+	private PasswordField password;
 
-    @FXML
-    private Label validationError;
+	@FXML
+	private Label validationError;
 
-    public LoginController() {
-    }
+	public LoginController() {
+	}
 
-    @FXML
-    private void initialize() {
-        validationError.setVisible(false);
-    }
+	@FXML
+	private void initialize() {
+		validationError.setVisible(false);
+	}
 
-    @FXML
-    private void validateLogin() {
-        String username = this.username.getText();
-        String password = this.password.getText();
-        Login user = null;
-        ArrayList<Login> logins = Login.getLogins(db);
-        boolean loginExists = false;
-        for (Login login : logins) {
-            if (login.getUsername().equals(username) && login.getPassword().equals(password)) {
-                loginExists = true;
-                user = login;
-            }
-        }
-        if (loginExists) {
-            try {
-                if (user.isAdmin()) {
-                    showAdminPage();
-                } else {
-                    showUserPage();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            showValidationError();
-        }
-    }
+	@FXML
+	private void validateLogin() {
+		String username = this.username.getText();
+		String password = this.password.getText();
+		Login user = null;
+		ArrayList<Login> logins = Login.getLogins(db);
+		boolean loginExists = false;
+		for (Login login : logins) {
+			if (login.getUsername().equals(username) && login.getPassword().equals(password)) {
+				loginExists = true;
+				user = login;
+			}
+		}
+		if (loginExists) {
+			try {
+				if (user.isAdmin()) {
+					showAdminPage();
+				} else {
+					showUserPage();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			showValidationError();
+		}
+	}
 
-    @FXML
-    private void showUserPage() throws Exception {
-        Stage stage = (Stage) signInButton.getScene().getWindow();
+	@FXML
+	private void showUserPage() throws Exception {
+		Stage stage = (Stage) signInButton.getScene().getWindow();
 
-        UserView view = new UserView();
-        view.showView(stage);
-    }
+		UserView view = new UserView();
+		view.showView(stage);
+	}
 
-    @FXML
-    private void showAdminPage() throws Exception {
-        Stage stage = (Stage) signInButton.getScene().getWindow();
+	@FXML
+	private void showAdminPage() throws Exception {
+		Stage stage = (Stage) signInButton.getScene().getWindow();
 
-        AdminView view = new AdminView();
-        view.showView(stage);
-    }
+		AdminView view = new AdminView();
+		view.showView(stage);
+	}
 
-    private void showValidationError() {
-        username.getStyleClass().add("error");
-        password.getStyleClass().add("error");
-        password.clear();
-        validationError.setVisible(true);
+	private void showValidationError() {
+		username.getStyleClass().add("error");
+		password.getStyleClass().add("error");
+		password.clear();
+		validationError.setVisible(true);
 
-        ChangeListener resetStyle = (observableValue, oldV, newV) -> {
-            if ((boolean)newV) {
-                username.getStyleClass().clear();
-                password.getStyleClass().clear();
-                username.getStyleClass().addAll("text-field", "text-input");
-                password.getStyleClass().addAll("text-field", "text-input");
-                validationError.setVisible(false);
-            }
-        };
+		ChangeListener resetStyle = (observableValue, oldV, newV) -> {
+			if ((boolean) newV) {
+				username.getStyleClass().clear();
+				password.getStyleClass().clear();
+				username.getStyleClass().addAll("text-field", "text-input");
+				password.getStyleClass().addAll("text-field", "text-input");
+				validationError.setVisible(false);
+			}
+		};
 
-        username.focusedProperty().addListener(resetStyle);
-        password.focusedProperty().addListener(resetStyle);
-    }
-    
-    public void showView(Stage window) throws Exception {
-        Pane root = (Pane) FXMLLoader.load(getClass().getResource("login.fxml"));
-        Scene scene = new Scene(root);
-        window.setTitle("Log In");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
-    }
-    
+		username.focusedProperty().addListener(resetStyle);
+		password.focusedProperty().addListener(resetStyle);
+	}
+
+	public void showView(Stage window) throws Exception {
+		Pane root = (Pane) FXMLLoader.load(getClass().getResource("login.fxml"));
+		Scene scene = new Scene(root);
+		window.setTitle("Log In");
+		window.setScene(scene);
+		window.setResizable(false);
+		window.show();
+	}
+
 }

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class FermiConnector {
-		private final String DB_URL = "jdbc:mysql://45.55.136.114:3306/fermitracker";
-		private Connection conn;
+	private final String DB_URL = "jdbc:mysql://45.55.136.114:3306/fermitracker";
+	private Connection conn;
 
 	public String getDB_URL() {
 		return DB_URL;
@@ -26,12 +26,12 @@ public class FermiConnector {
 
 	public FermiConnector() {
 		try {
-			conn = DriverManager.getConnection(DB_URL, "username", "password");
+			conn = DriverManager.getConnection(DB_URL, "user", "pass");
 		} catch (SQLException ex) {
 			System.out.println("ERROR: " + ex.getMessage());
 		}
 	}
-	
+
 	public boolean add(FermiEntry entry) {
 		try {
 			PreparedStatement stmt = conn.prepareStatement("INSERT INTO hours_offered VALUES (?,?,?,?,?,?)");
@@ -52,11 +52,9 @@ public class FermiConnector {
 
 	public boolean edit(FermiEntry entry, int originalSeniority) {
 		try {
-			PreparedStatement stmt = conn.prepareStatement(
-					"UPDATE hours_offered " +
-							"SET First_Name = ?, Last_Name = ?, Phone_Number = ?, Overtime_Offered = ?, Seniority = ?," +
-							"In_Bison_Feeding_Program = ? " +
-							"WHERE Seniority = ?;");
+			PreparedStatement stmt = conn.prepareStatement("UPDATE hours_offered "
+					+ "SET First_Name = ?, Last_Name = ?, Phone_Number = ?, Overtime_Offered = ?, Seniority = ?,"
+					+ "In_Bison_Feeding_Program = ? " + "WHERE Seniority = ?;");
 
 			stmt.setString(1, entry.getFirstName());
 			stmt.setString(2, entry.getLastName());
@@ -74,13 +72,12 @@ public class FermiConnector {
 		}
 
 	}
-	
+
 	public boolean remove(FermiEntry entry) {
 		try {
 			Statement stmt = conn.createStatement();
-			
-			stmt.execute("DELETE FROM hours_offered WHERE Seniority = "
-			+ entry.getSeniority() + ";");
+
+			stmt.execute("DELETE FROM hours_offered WHERE Seniority = " + entry.getSeniority() + ";");
 			return true;
 		} catch (SQLException ex) {
 			System.out.println("ERROR: " + ex.getMessage());
