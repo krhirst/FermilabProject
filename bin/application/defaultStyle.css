@@ -18,3 +18,7 @@
 .error {
     -fx-background-color: rgb(240, 157, 163), linear-gradient(to bottom, rgb(240, 147, 149) 0%, rgb(221, 136, 139) 35%, rgb(233, 148, 154) 100%);
 }
+
+.error {
+    -fx-background-color: rgb(240, 157, 163), linear-gradient(to bottom, rgb(240, 147, 149) 0%, rgb(221, 136, 139) 35%, rgb(233, 148, 154) 100%);
+}
