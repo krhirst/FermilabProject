@@ -10,14 +10,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adminPage.AdminController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adminPage.AdminController">
 	<children>
-		<TableView fx:id="dataTable" layoutX="118.0" layoutY="95.0" prefHeight="732.0" prefWidth="581.0">
+		<TableView fx:id="dataTable" layoutX="118.0" layoutY="95.0" prefHeight="668.0" prefWidth="581.0">
 			<columns>
-				<TableColumn fx:id="firstNameCol" prefWidth="98.40003204345703" text="First Name" />
-				<TableColumn fx:id="lastNameCol" prefWidth="90.39996337890625" text="Last Name" />
-				<TableColumn fx:id="phoneCol" prefWidth="87.20001220703125" text="Phone" />
-				<TableColumn id="overCol" fx:id="overCol" minWidth="0.0" prefWidth="64" text="Hours" />
+				<TableColumn fx:id="firstNameCol" prefWidth="116.0" text="First Name" />
+				<TableColumn fx:id="lastNameCol" prefWidth="116.0" text="Last Name" />
+				<TableColumn fx:id="phoneCol" prefWidth="116.0" text="Phone" />
+				<TableColumn id="overCol" fx:id="overCol" minWidth="0.0" prefWidth="83.0" text="Hours" />
 				<TableColumn id="senCol" fx:id="senCol" prefWidth="90" text="Seniority" />
 				<TableColumn id="bisonCol" fx:id="bisonCol" prefWidth="57" text="BFP" />
 			</columns>
@@ -27,17 +27,14 @@
 				<Font name="Helvetica" size="29.0" />
 			</font>
 		</Text>
-		<Text fill="#004c97" layoutX="147.0" layoutY="70.0"
-			strokeType="OUTSIDE" strokeWidth="0.0"
-			text="Overtime List Application" wrappingWidth="182.2060546875">
+		<Text fill="#004c97" layoutX="147.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime List Application" wrappingWidth="182.2060546875">
 			<font>
 				<Font size="15.0" />
 			</font>
 		</Text>
 		<VBox prefHeight="640.0" prefWidth="100.0">
 			<children>
-				<Button fx:id="btn1" mnemonicParsing="false"
-					prefHeight="90.0" prefWidth="104.0">
+				<Button fx:id="btn1" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0">
                     <graphic>
                         <ImageView fitHeight="72.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -46,9 +43,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-				<Button fx:id="usersButton" mnemonicParsing="false"
-					onAction="#editUsers" prefHeight="90.0" prefWidth="104.0"
-					text="Users">
+				<Button fx:id="usersButton" mnemonicParsing="false" onAction="#editUsers" prefHeight="90.0" prefWidth="104.0">
 					<font>
 						<Font name="System Bold Italic" size="24.0" />
 					</font>
@@ -60,9 +55,7 @@
                         </ImageView>
                     </graphic>
 				</Button>
-				<Button fx:id="printButton" mnemonicParsing="false"
-					onAction="#printPage" prefHeight="90.0" prefWidth="104.0"
-					text="Print">
+				<Button fx:id="printButton" mnemonicParsing="false" onAction="#printPage" prefHeight="90.0" prefWidth="104.0">
 					<font>
 						<Font name="System Bold Italic" size="26.0" />
 					</font>
@@ -74,13 +67,18 @@
                         </ImageView>
                     </graphic>
 				</Button>
-                <Button fx:id="reportsButton" mnemonicParsing="false" onAction="#showReports" prefHeight="90.0" prefWidth="104.0" text="Reports">
+                <Button fx:id="reportsButton" mnemonicParsing="false" onAction="#showReports" prefHeight="90.0" prefWidth="104.0">
                     <font>
                         <Font name="System Bold Italic" size="20.0" />
-                    </font></Button>
-				<Button fx:id="logoutButton" mnemonicParsing="false"
-					onAction="#logOut" prefHeight="90.0" prefWidth="104.0"
-					text="Log Out">
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/reports.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+				<Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logOut" prefHeight="90.0" prefWidth="104.0">
 					<font>
 						<Font name="System Bold Italic" size="18.0" />
 					</font>
@@ -92,14 +90,10 @@
                         </ImageView>
                     </graphic>
 				</Button>
-				<Button fx:id="btn6" mnemonicParsing="false"
-					prefHeight="90.0" prefWidth="104.0" />
 			</children>
 		</VBox>
-		<Text fx:id="updateText" layoutX="491.0" layoutY="51.0"
-			strokeType="OUTSIDE" strokeWidth="0.0"
-			text="Updated: 11/7/19 08:51AM" wrappingWidth="202.13668823242188" />
-        <ImageView fitHeight="72.0" fitWidth="351.0" layoutX="14.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true">
+		<Text fx:id="updateText" layoutX="491.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Updated: 11/7/19 08:51AM" wrappingWidth="202.13668823242188" />
+        <ImageView fitHeight="72.0" fitWidth="351.0" layoutX="14.0" layoutY="771.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../resources/fermi2.png" />
             </image>
