@@ -5,21 +5,23 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reportPage.ReportsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reportPage.ReportsController">
    <children>
-      <TableView fx:id="dataTable" layoutX="118.0" layoutY="180.0" prefHeight="360.0" prefWidth="470.0">
+      <TableView fx:id="dataTable" layoutX="118.0" layoutY="180.0" prefHeight="360.0" prefWidth="581.0">
          <columns>
-            <TableColumn fx:id="firstNameCol" prefWidth="88.0" text="First Name" />
-            <TableColumn fx:id="lastNameCol" prefWidth="85.0" text="Last Name" />
-            <TableColumn fx:id="phoneCol" prefWidth="68.0" text="Phone" />
-            <TableColumn id="bisonCol" fx:id="bisonCol" prefWidth="57.0" text="Bison" />
-            <TableColumn id="overCol" fx:id="overCol" minWidth="0.0" prefWidth="64.0" text="Hours" />
+            <TableColumn fx:id="firstNameCol" prefWidth="116.0" text="First Name" />
+            <TableColumn fx:id="lastNameCol" prefWidth="116.0" text="Last Name" />
+            <TableColumn fx:id="phoneCol" prefWidth="116.0" text="Phone" />
+            <TableColumn id="overCol" fx:id="overCol" minWidth="0.0" prefWidth="83.0" text="Hours" />
             <TableColumn id="senCol" fx:id="senCol" prefWidth="90.0" text="Seniority" />
+            <TableColumn id="bisonCol" fx:id="bisonCol" prefWidth="57.0" text="BFP" />
          </columns>
       </TableView>
       <Text fill="#004c97" layoutX="125.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roads &amp; Grounds" wrappingWidth="240.2060546875">
@@ -36,17 +38,31 @@
          <children>
             <Button fx:id="btn1" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
             <Button fx:id="btn2" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
-            <Button fx:id="printButton" mnemonicParsing="false" onAction="#printPage" prefHeight="90.0" prefWidth="104.0" text="Print">
+            <Button fx:id="printButton" mnemonicParsing="false" onAction="#printPage" prefHeight="90.0" prefWidth="104.0">
                <font>
                   <Font name="System Bold Italic" size="26.0" />
                </font>
-            </Button>
-            <Button fx:id="backButton" mnemonicParsing="false" onAction="#goBack" prefHeight="90.0" prefWidth="104.0" text="Back">
-               <font>
-                  <Font name="System Bold Italic" size="26.0" />
-               </font>
+               <graphic>
+                  <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/print2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
             <Button fx:id="btn5" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#goBack" prefHeight="90.0" prefWidth="104.0">
+               <font>
+                  <Font name="System Bold Italic" size="26.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/backArrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             <Button fx:id="btn6" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
          </children>
       </VBox>
@@ -60,5 +76,10 @@
             <Font size="10.0" />
          </font>
       </Text>
+      <ImageView fitHeight="72.0" fitWidth="351.0" layoutX="14.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/fermi2.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

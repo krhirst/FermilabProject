@@ -1,7 +1,6 @@
 package login;
 
 import application.FermiConnector;
-import com.mysql.cj.log.Log;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
