@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="721.0" stylesheets="@../application/defaultStyling.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reportPage.ReportsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="721.0" stylesheets="@../application/defaultStyling.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reportPage.ReportsController">
    <children>
       <TableView fx:id="dataTable" layoutX="118.0" layoutY="172.0" prefHeight="368.0" prefWidth="581.0">
          <columns>
@@ -78,8 +78,6 @@
             <Image url="@../resources/fermi2.png" />
          </image>
       </ImageView>
-      <TextField fx:id="searchNumber1" layoutX="563.0" layoutY="141.0" prefHeight="25.0" prefWidth="36.0" />
-      <Label layoutX="508.0" layoutY="146.0" text="Number:" />
-      <DatePicker fx:id="datePicker" layoutX="494.0" layoutY="53.0" onAction="#setDate" promptText="Optional: choose date" />
+      <DatePicker fx:id="datePicker" layoutX="494.0" layoutY="142.0" onAction="#setDate" promptText="Optional: choose date" />
    </children>
 </Pane>
