@@ -26,3 +26,7 @@
 2019-12-01 08:15,update,Happy,Hogan,24,Phone:(372)648-9080:(382)415-5594,Overtime:190.0:192.0,
 2019-12-01 09:27,update,Carol,Danvers,9,Phone:(428)962-7602:(762)712-0562,Overtime:165.75:169.25,
 2019-12-01 09:34,update,Bruce,Banner,4,Phone:(608)474-6015:(215)633-6939,Overtime:180.75:186.0,
+2019-12-02 20:13,delete,Tony,Stark,1
+2019-12-02 20:13,add,FirstName:Tony,LastName:Stark,Phone:(123)456-7890,Overtime:150.0,Seniority:1,InBison:false
+2019-12-02 20:13,update,Tony,Stark,1,Overtime:150.0:160.0,
+2019-12-03 08:07,update,Tony,Stark,1,Overtime:160.0:168.5,
