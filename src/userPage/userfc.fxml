@@ -10,24 +10,29 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userPage.UserController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userPage.UserController">
    <children>
+      <ImageView fitHeight="72.0" fitWidth="351.0" layoutX="14.0" layoutY="771.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/fermi2.png" />
+         </image>
+      </ImageView>
       <TableView fx:id="dataTable" layoutX="118.0" layoutY="95.0" prefHeight="668.0" prefWidth="581.0">
          <columns>
             <TableColumn fx:id="firstNameCol" prefWidth="116.0" text="First Name" />
-            <TableColumn fx:id="lastNameCol" prefWidth="116.0" text="Last Name" />
-            <TableColumn fx:id="phoneCol" prefWidth="116.0" text="Phone" />
-            <TableColumn id="overCol" fx:id="overCol" minWidth="0.0" prefWidth="83.0" text="Hours" />
-            <TableColumn id="senCol" fx:id="senCol" prefWidth="90.0" text="Seniority" />
+            <TableColumn fx:id="lastNameCol" prefWidth="104.800048828125" text="Last Name" />
+            <TableColumn fx:id="phoneCol" prefWidth="143.20001220703125" text="Phone" />
+            <TableColumn id="overCol" fx:id="overCol" minWidth="0.0" prefWidth="93.60000610351562" text="Hours" />
+            <TableColumn id="senCol" fx:id="senCol" prefWidth="64.0" text="Seniority" />
             <TableColumn id="bisonCol" fx:id="bisonCol" prefWidth="57.0" text="BFP" />
          </columns>
       </TableView>
       <Text fill="#004c97" layoutX="125.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roads &amp; Grounds" wrappingWidth="240.2060546875">
          <font>
-            <Font name="Helvetica" size="29.0" />
+            <Font name="System Bold" size="29.0" />
          </font>
       </Text>
-      <Text fill="#004c97" layoutX="147.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime List Application" wrappingWidth="182.2060546875">
+      <Text fill="#004c97" layoutX="125.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime List Application" wrappingWidth="182.2060546875">
          <font>
             <Font size="15.0" />
          </font>
@@ -76,10 +81,5 @@
          </children>
       </VBox>
       <Text fx:id="updateText" layoutX="491.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Updated: 11/7/19 08:51AM" wrappingWidth="174.13671875" />
-      <ImageView fitHeight="72.0" fitWidth="351.0" layoutX="14.0" layoutY="771.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/fermi2.png" />
-         </image>
-      </ImageView>
    </children>
 </Pane>
