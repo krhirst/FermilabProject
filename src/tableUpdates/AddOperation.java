@@ -7,6 +7,7 @@ public class AddOperation extends Operation {
 	private String firstName;
 	private String lastName;
 	private int seniority;
+	private double hoursChanged = 0;
 
 	public AddOperation(FermiEntry entry) {
 		super();
@@ -47,6 +48,10 @@ public class AddOperation extends Operation {
 
 	public void setSeniority(int seniority) {
 		this.seniority = seniority;
+	}
+
+	public double getHoursChanged() {
+		return hoursChanged;
 	}
 
 	@Override

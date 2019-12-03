@@ -7,6 +7,7 @@ public class DeleteOperation extends Operation {
 	private String firstName;
 	private String lastName;
 	private int seniority;
+	private double hoursChanged = 0;
 
 	public DeleteOperation(String firstName, String lastName, int seniority) {
 		super();
@@ -46,6 +47,10 @@ public class DeleteOperation extends Operation {
 
 	public void setSeniority(int seniority) {
 		this.seniority = seniority;
+	}
+
+	public double getHoursChanged() {
+		return hoursChanged;
 	}
 
 	@Override

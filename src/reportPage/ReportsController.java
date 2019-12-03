@@ -10,10 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.print.*;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
@@ -21,9 +18,10 @@ import javafx.stage.Stage;
 import tableUpdates.Operation;
 import tableUpdates.UpdateFileReader;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Stack;
 
 public class ReportsController {
     private FermiConnector base = new FermiConnector();
@@ -51,6 +49,11 @@ public class ReportsController {
     
     @FXML
     private Text errorText;
+
+    @FXML
+    private DatePicker datePicker;
+
+    private LocalDate dateFromPicker;
 
     private EmployeeList employees = new EmployeeList();
 
@@ -210,11 +213,31 @@ public class ReportsController {
         phoneCol.setCellValueFactory(new PropertyValueFactory("time"));
         overCol.setText("Type");
         overCol.setCellValueFactory(new PropertyValueFactory("type"));
-        bisonCol.setCellValueFactory(null);
+        bisonCol.setText("Hours");
+        bisonCol.setCellValueFactory(new PropertyValueFactory("hoursChanged"));
 
-        Stack<Operation> updates = UpdateFileReader.getUpdatesAsStack();
+        List<Operation> updates;
+        if (dateFromPicker == null) {
+            updates = UpdateFileReader.getUpdatesAsList();
+        } else {
+            updates = new ArrayList<>();
+            List<Operation> allUpdates = UpdateFileReader.getUpdatesAsList();
+            for (Operation o :
+                    allUpdates) {
+                String[] splitString = o.getTime().split(" ");
+                String date = splitString[0];
+                if (date.equals(dateFromPicker.toString())) {
+                    updates.add(o);
+                }
+            }
+        }
         ObservableList<Operation> items = FXCollections.observableList(updates);
         dataTable.setItems(items);
+    }
 
+    @FXML
+    private void setDate() {
+        this.dateFromPicker = datePicker.getValue();
+        System.out.println(dateFromPicker.toString());
     }
 }

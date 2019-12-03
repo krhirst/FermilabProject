@@ -10,6 +10,7 @@ public class UpdateOperation extends Operation {
 	private String firstName;
 	private String lastName;
 	private int seniority;
+	private double hoursChanged;
 	private LinkedList<ChangedField> changedFields = new LinkedList<>();
 
 	public UpdateOperation(String firstName, String lastName, int seniority, LinkedList<ChangedField> changedFields) {
@@ -19,10 +20,17 @@ public class UpdateOperation extends Operation {
 		this.lastName = lastName;
 		this.seniority = seniority;
 		this.changedFields = changedFields;
+
+		for (ChangedField cf : changedFields) {
+			if (cf.getFieldName().equals("Overtime")) {
+				calculateHoursChanged(cf);
+			}
+		}
 	}
 
 	public UpdateOperation(FermiEntry oldEntry, FermiEntry newEntry) {
 		super();
+		this.type = "update";
 		originalEntry = oldEntry;
 		updatedEntry = newEntry;
 
@@ -31,15 +39,28 @@ public class UpdateOperation extends Operation {
 		seniority = oldEntry.getSeniority();
 
 		setChangedFields();
+
+		for (ChangedField cf : changedFields) {
+			if (cf.getFieldName().equals("Overtime")) {
+				calculateHoursChanged(cf);
+			}
+		}
 	}
 
 	public UpdateOperation(String firstName, String lastName, String seniority,
 			LinkedList<ChangedField> changedFields) {
 		super();
+		this.type = "update";
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.seniority = Integer.parseInt(seniority);
 		this.changedFields = changedFields;
+
+		for (ChangedField cf : changedFields) {
+			if (cf.getFieldName().equals("Overtime")) {
+				calculateHoursChanged(cf);
+			}
+		}
 	}
 
 	public String getFirstName() {
@@ -74,6 +95,14 @@ public class UpdateOperation extends Operation {
 		this.changedFields = changedFields;
 	}
 
+	public double getHoursChanged() {
+		return hoursChanged;
+	}
+
+	public void setHoursChanged(double hoursChanged) {
+		this.hoursChanged = hoursChanged;
+	}
+
 	private void setChangedFields() {
 		String[] fields = new String[] { "FirstName", "LastName", "Phone", "Overtime", "Seniority", "InBison" };
 		String[] oldValues = new String[] { originalEntry.getFirstName(), originalEntry.getLastName(),
@@ -89,7 +118,6 @@ public class UpdateOperation extends Operation {
 				changedFields.add(changedField);
 			}
 		}
-
 	}
 
 	@Override
@@ -100,5 +128,9 @@ public class UpdateOperation extends Operation {
 			sb.append(cf.toString() + ",");
 		}
 		return sb.toString();
+	}
+
+	private void calculateHoursChanged(ChangedField cf) {
+		hoursChanged = Double.parseDouble(cf.getNewEntry()) - Double.parseDouble(cf.getOldEntry());
 	}
 }
