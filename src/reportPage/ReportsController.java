@@ -19,9 +19,6 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Iterator;
 import java.util.List;
 
@@ -51,6 +48,8 @@ public class ReportsController {
     
     @FXML
     private Text errorText;
+
+    private EmployeeList employees = new EmployeeList();
 
     public ReportsController() {
 
@@ -114,7 +113,6 @@ public class ReportsController {
     	dataTable.getItems().clear();
     	
     	//grabbing list of employees from database
-        EmployeeList employees = new EmployeeList();
         ObservableList<FermiEntry> bisonEmployees = FXCollections.observableArrayList();
     	
     	//counter for the current index in employees
@@ -180,7 +178,6 @@ public class ReportsController {
     		return;
     	}
     	
-    	ObservableList<FermiEntry> employees = getEmployees();
     	ObservableList<FermiEntry> SeniorityEmployees = FXCollections.observableArrayList();
     	
     	for(FermiEntry e: employees) {
@@ -191,22 +188,4 @@ public class ReportsController {
     	
     	dataTable.setItems(SeniorityEmployees);
     }
-
-	private ObservableList<FermiEntry> getEmployees() {
-		
-		ObservableList<FermiEntry> employees = FXCollections.observableArrayList();
-		
-		try {
-            Statement stmt = base.getConn().createStatement();
-            ResultSet result = stmt.executeQuery("SELECT * FROM hours_offered");
-            while (result.next()) {
-                employees.add(new FermiEntry(result.getString(1), result.getString(2), result.getString(3), result.getDouble(4),
-                        result.getInt(5), result.getBoolean(6)));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-		
-		return employees;
-	}
 }

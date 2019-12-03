@@ -19,7 +19,7 @@ public class EmployeeList implements Iterable<FermiEntry> {
         return new FermiEntryIterator<>(list);
     }
 
-    public static ArrayList<FermiEntry> getEmployees(FermiConnector dbConnection) {
+    public ArrayList<FermiEntry> getEmployees(FermiConnector dbConnection) {
         ResultSet resultSet = dbConnection.getData("hours_offered");
         return parseEmployeeData(resultSet);
     }
