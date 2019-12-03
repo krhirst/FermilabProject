@@ -15,7 +15,8 @@ import java.util.Date;
 import java.util.LinkedList;
 
 public abstract class Operation {
-	private String time;
+	protected String time;
+	protected String type;
 
 	public Operation() {
 		Calendar cal = Calendar.getInstance();
@@ -31,6 +32,14 @@ public abstract class Operation {
 
 	public void setTime(String time) {
 		this.time = time;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public boolean addToFile(String str) {

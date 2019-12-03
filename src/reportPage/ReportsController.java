@@ -18,15 +18,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
+import tableUpdates.Operation;
+import tableUpdates.UpdateFileReader;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 
 public class ReportsController {
     private FermiConnector base = new FermiConnector();
 
     @FXML
-    private TableView<FermiEntry> dataTable;
+    private TableView dataTable;
 
     @FXML
     TableColumn<FermiEntry, String> firstNameCol, lastNameCol, phoneCol;
@@ -41,7 +44,7 @@ public class ReportsController {
     TableColumn<FermiEntry, Boolean> bisonCol;
 
     @FXML
-    private Button printButton, backButton, bisonButton, seniorityButton;
+    private Button printButton, backButton, bisonButton, seniorityButton, updatesButton;
     
     @FXML
     private TextField searchNumber;
@@ -110,8 +113,11 @@ public class ReportsController {
     @FXML
     private void BisonReport() throws Exception{
     	
-    	dataTable.getItems().clear();
-    	
+        dataTable.getItems().clear();
+        String columnText = phoneCol.getText();
+        if (columnText.equals("Date"))
+            resetTableView();
+
     	//grabbing list of employees from database
         ObservableList<FermiEntry> bisonEmployees = FXCollections.observableArrayList();
     	
@@ -158,15 +164,16 @@ public class ReportsController {
 
 	@FXML
     private void SeniorReport() throws Exception{
-		
+        String columnText = phoneCol.getText();
+		if (columnText.equals("Date"))
+		    resetTableView();
+
 		int searchNum;
-		errorText.setVisible(false);
 		
     	try {
     		searchNum = Integer.parseInt(searchNumber.getText());
     	}
     	catch (NumberFormatException e) {
-    		errorText.setVisible(true);
     		searchNumber.getStyleClass().add("error");
             ChangeListener resetStyle = (observableValue, oldV, newV) -> {
                 if ((boolean) newV) {
@@ -177,7 +184,7 @@ public class ReportsController {
             searchNumber.focusedProperty().addListener(resetStyle);
     		return;
     	}
-    	
+
     	ObservableList<FermiEntry> SeniorityEmployees = FXCollections.observableArrayList();
     	
     	for(FermiEntry e: employees) {
@@ -187,5 +194,27 @@ public class ReportsController {
     	}
     	
     	dataTable.setItems(SeniorityEmployees);
+    }
+
+    private void resetTableView() {
+        phoneCol.setText("Phone");
+        phoneCol.setCellValueFactory(new PropertyValueFactory("phone"));
+        overCol.setText("Hours");
+        overCol.setCellValueFactory(new PropertyValueFactory("overtime"));
+        bisonCol.setCellValueFactory(new PropertyValueFactory("inBison"));
+    }
+
+    @FXML
+    private void updatesReport() {
+        phoneCol.setText("Date");
+        phoneCol.setCellValueFactory(new PropertyValueFactory("time"));
+        overCol.setText("Type");
+        overCol.setCellValueFactory(new PropertyValueFactory("type"));
+        bisonCol.setCellValueFactory(null);
+
+        Stack<Operation> updates = UpdateFileReader.getUpdatesAsStack();
+        ObservableList<Operation> items = FXCollections.observableList(updates);
+        dataTable.setItems(items);
+
     }
 }

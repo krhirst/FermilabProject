@@ -2,7 +2,6 @@ package tableUpdates;
 
 import application.FermiEntry;
 
-import java.lang.reflect.Method;
 import java.util.LinkedList;
 
 public class UpdateOperation extends Operation {
@@ -15,6 +14,7 @@ public class UpdateOperation extends Operation {
 
 	public UpdateOperation(String firstName, String lastName, int seniority, LinkedList<ChangedField> changedFields) {
 		super();
+		this.type = "update";
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.seniority = seniority;

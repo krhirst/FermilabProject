@@ -14,7 +14,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="721.0" stylesheets="@../application/defaultStyling.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reportPage.ReportsController">
    <children>
-      <TableView fx:id="dataTable" layoutX="118.0" layoutY="180.0" prefHeight="360.0" prefWidth="581.0">
+      <TableView fx:id="dataTable" layoutX="118.0" layoutY="172.0" prefHeight="368.0" prefWidth="581.0">
          <columns>
             <TableColumn fx:id="firstNameCol" prefWidth="116.0" text="First Name" />
             <TableColumn fx:id="lastNameCol" prefWidth="116.0" text="Last Name" />
@@ -66,16 +66,12 @@
             <Button fx:id="btn6" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
          </children>
       </VBox>
-      <Button fx:id="bisonButton" layoutX="118.0" layoutY="108.0" mnemonicParsing="false" onAction="#BisonReport" prefHeight="39.0" prefWidth="146.0" text="Bison Feeding Program" />
-      <Text layoutX="118.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports:" />
-      <Button fx:id="seniorityButton" layoutX="280.0" layoutY="108.0" mnemonicParsing="false" onAction="#SeniorReport" prefHeight="39.0" prefWidth="146.0" text="Seniority" />
-      <Label layoutX="433.0" layoutY="119.0" text="Seniority Number:" />
-      <TextField fx:id="searchNumber" layoutX="536.0" layoutY="115.0" prefHeight="25.0" prefWidth="36.0" />
-      <Text fx:id="errorText" fill="RED" layoutX="433.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ERROR: Please check your input" underline="true" visible="false">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Text>
+      <Button fx:id="bisonButton" layoutX="117.0" layoutY="95.0" mnemonicParsing="false" onAction="#BisonReport" prefHeight="39.0" prefWidth="146.0" text="Bison Feeding Program" />
+      <Text layoutX="118.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports:" />
+      <Button fx:id="seniorityButton" layoutX="306.0" layoutY="95.0" mnemonicParsing="false" onAction="#SeniorReport" prefHeight="39.0" prefWidth="146.0" text="Seniority" />
+      <Button fx:id="updatesButton" layoutX="508.0" layoutY="95.0" mnemonicParsing="false" onAction="#updatesReport" prefHeight="39.0" prefWidth="146.0" text="Updates" />
+      <Label layoutX="306.0" layoutY="146.0" text="Seniority Number:" />
+      <TextField fx:id="searchNumber" layoutX="409.0" layoutY="141.0" prefHeight="25.0" prefWidth="36.0" />
       <ImageView fitHeight="72.0" fitWidth="351.0" layoutX="14.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/fermi2.png" />

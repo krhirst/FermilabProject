@@ -2,8 +2,6 @@ package tableUpdates;
 
 import application.FermiEntry;
 
-import java.sql.Time;
-
 public class DeleteOperation extends Operation {
 	private FermiEntry entry;
 	private String firstName;
@@ -12,6 +10,7 @@ public class DeleteOperation extends Operation {
 
 	public DeleteOperation(String firstName, String lastName, int seniority) {
 		super();
+		this.type = "delete";
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.seniority = seniority;
