@@ -1,6 +1,7 @@
 package editUsersPage;
 
 import adminPage.AdminView;
+import application.EmployeeList;
 import application.FermiConnector;
 import application.FermiEntry;
 import javafx.beans.value.ChangeListener;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 import tableUpdates.AddOperation;
 import tableUpdates.DeleteOperation;
 import tableUpdates.UpdateOperation;
+import reportPage.ReportsView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +31,8 @@ public class EditUsersController {
 	private Tab addTab, editTab, removeTab;
 
 	@FXML
-	private Button addButton, homeButton, removeTabSearchButton, editTabSearchButton, deleteButton, editButton;
+	private Button addButton, homeButton, removeTabSearchButton, editTabSearchButton, deleteButton, editButton,
+			reportsButton;
 
 	@FXML
 	private TextField firstNameField, lastNameField, phoneField, seniorityField, hoursOfferedField,
@@ -81,6 +84,14 @@ public class EditUsersController {
 	}
 
 	@FXML
+	private void showReports() throws Exception {
+		Stage stage = (Stage) reportsButton.getScene().getWindow();
+
+		ReportsView view = new ReportsView();
+		view.showView(stage);
+	}
+
+	@FXML
 	private void displayUserFromSearch() {
 		if (tabPane.getSelectionModel().getSelectedItem().getId().equals("editTab")) {
 			if (validateString(editTabSearchField)) {
@@ -126,7 +137,7 @@ public class EditUsersController {
 	}
 
 	private FermiEntry searchUsers(String entry) {
-		ArrayList<FermiEntry> data = FermiEntry.getEmployees(db);
+		EmployeeList data = new EmployeeList();
 		for (FermiEntry employee : data) {
 			if (employee.getLastName().equalsIgnoreCase(entry)) {
 				user = employee;

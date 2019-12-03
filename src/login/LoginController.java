@@ -38,6 +38,7 @@ public class LoginController {
 	@FXML
 	private void initialize() {
 		validationError.setVisible(false);
+		signInButton.setDefaultButton(true);
 	}
 
 	@FXML

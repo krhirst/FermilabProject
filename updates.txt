@@ -1,4 +1,36 @@
-2019-11-30 21:56,delete,Trevor,Johnson,28
-2019-11-30 21:57,add,FirstName:Gandalf,LastName:The Grey,Phone:(456)789-1235,Overtime:987.0,Seniority:1000,InBison:false
-2019-11-30 21:57,add,FirstName:Andy,LastName:Samberg,Phone:(456)789-1235,Overtime:100.0,Seniority:100,InBison:true
-2019-11-30 21:58,update,Kristen,Hirst,26,Phone:(12)123-1234:(318)123-4567,Overtime:178.5:180.5,
+2019-11-11 09:36,add,FirstName:Tony,LastName:Stark,Phone:(225)555-8013,Overtime:120.5,Seniority:1,InBison:true
+2019-11-11 09:38,add,FirstName:Thor,LastName:Odinson,Phone:(512)555-3035,Overtime:130.75,Seniority:2,InBison:false
+2019-11-11 09:42,add,FirstName:Hank,LastName:Pym,Phone:(651)555-7024,Overtime:125.25,Seniority:3,InBison:false
+2019-11-11 09:45,add,FirstName:Bruce,LastName:Banner,Phone:(608)474-6015,Overtime:180.75,Seniority:4,InBison:true
+2019-11-15 07:48,add,FirstName:Steve,LastName:Rogers,Phone:(880)810-2970,Overtime:180.75,Seniority:5,InBison:true
+2019-11-15 07:54,add,FirstName:Clint,LastName:Barton,Phone:(944)934-0894,Overtime:172.5,Seniority:6,InBison:false
+2019-11-15 08:00,add,FirstName:Wanda,LastName:Maximoff,Phone:(879)939-4234,Overtime:178.25,Seniority:7,InBison:false
+2019-11-15 08:08,add,FirstName:Natasha,LastName:Romanoff,Phone:(453)256-7035,Overtime:182.0,Seniority:8,InBison:true
+2019-11-20 09:24,add,FirstName:Carol,LastName:Danvers,Phone:(428)962-7602,Overtime:165.75,Seniority:9,InBison:true
+2019-11-20 09:30,add,FirstName:Samuel,LastName:Wilson,Phone:(716)380-3561,Overtime:170.75,Seniority:10,InBison:false
+2019-11-20 10:05,add,FirstName:James,LastName:Rhodes,Phone:(338)646-5789,Overtime:180.0,Seniority:11,InBison:true
+2019-11-20 10:11,add,FirstName:Peter,LastName:Parker,Phone:(988)593-9570,Overtime:178.25,Seniority:12,InBison:true
+2019-11-23 12:40,add,FirstName:Scott,LastName:Lang,Phone:(882)252-2283,Overtime:184.25,Seniority:13,InBison:false
+2019-11-23 12:56,add,FirstName:Lucas,LastName:Cage,Phone:(520)541-3738,Overtime:173.25,Seniority:14,InBison:false
+2019-11-23 13:10,add,FirstName:Logan,LastName:Howlett,Phone:(786)547-9090,Overtime:182.25,Seniority:15,InBison:false
+2019-11-23 13:12,add,FirstName:James,LastName:Barnes,Phone:(387)819-9793,Overtime:177.75,Seniority:16,InBison:true
+2019-11-23 13:15,add,FirstName:Jessica,LastName:Jones,Phone:(899)268-3662,Overtime:178.25,Seniority:17,InBison:true
+2019-11-26 14:43,add,FirstName:Stephen,LastName:Strange,Phone:(589)371-3035,Overtime:146.0,Seniority:18,InBison:false
+2019-11-26 15:38,add,FirstName:Peter,LastName:Quill,Phone:(607)205-2601,Overtime:154.75,Seniority:19,InBison:true
+2019-11-26 15:53,add,FirstName:Pepper,LastName:Potts,Phone:(650)866-2516,Overtime:158.25,Seniority:20,InBison:true
+2019-11-26 16:21,add,FirstName:Nick,LastName:Fury,Phone:(288)337-3413,Overtime:160.75,Seniority:21,InBison:false
+2019-11-30 13:46,add,FirstName:Hope,LastName:van Dyne,Phone:(404)348-9451,Overtime:165.5,Seniority:22,InBison:true
+2019-11-30 17:24,add,FirstName:Jane,LastName:Foster,Phone:(565)410-3804,Overtime:169.25,Seniority:23,InBison:false
+2019-11-30 17:25,add,FirstName:Happy,LastName:Hogan,Phone:(372)648-9080,Overtime:190.0,Seniority:24,InBison:false
+2019-12-01 08:03,add,FirstName:Stan,LastName:Lee,Phone:(762)712-0562,Overtime:195.75,Seniority:25,InBison:true
+2019-12-01 08:15,update,Happy,Hogan,24,Phone:(372)648-9080:(382)415-5594,Overtime:190.0:192.0,
+2019-12-01 09:27,update,Carol,Danvers,9,Phone:(428)962-7602:(762)712-0562,Overtime:165.75:169.25,
+2019-12-01 09:34,update,Bruce,Banner,4,Phone:(608)474-6015:(215)633-6939,Overtime:180.75:186.0,
+2019-12-02 20:13,delete,Tony,Stark,1
+2019-12-02 20:13,add,FirstName:Tony,LastName:Stark,Phone:(123)456-7890,Overtime:150.0,Seniority:1,InBison:false
+2019-12-02 20:13,update,Tony,Stark,1,Overtime:150.0:160.0,
+2019-12-03 08:07,update,Tony,Stark,1,Overtime:160.0:168.5,
+2019-12-03 11:25,update,Tony,Stark,1,Phone:(123)456-7890:(153)624-5233,
+2019-12-03 11:29,update,Tony,Stark,1,LastName:Stark:Van Hartman,
+2019-12-03 11:29,update,Tony,Van Hartman,1,LastName:Van Hartman:Stark,
+2019-12-03 11:30,update,Hank,Pym,3,Overtime:125.25:132.25,

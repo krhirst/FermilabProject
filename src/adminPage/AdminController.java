@@ -12,19 +12,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import login.LoginController;
-import tableUpdates.Operation;
-import tableUpdates.UpdateFileReader;
+import reportPage.ReportsView;
 
-import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Stack;
 
 public class AdminController {
 	private FermiConnector base = new FermiConnector();
@@ -33,19 +29,19 @@ public class AdminController {
 	private TableView<FermiEntry> dataTable;
 
 	@FXML
-	TableColumn<FermiEntry, String> firstNameCol, lastNameCol, phoneCol;
+	private TableColumn<FermiEntry, String> firstNameCol, lastNameCol, phoneCol;
 
 	@FXML
-	TableColumn<FermiEntry, Double> overCol;
+	private TableColumn<FermiEntry, Double> overCol;
 
 	@FXML
-	TableColumn<FermiEntry, Integer> senCol;
+	private TableColumn<FermiEntry, Integer> senCol;
 
 	@FXML
-	TableColumn<FermiEntry, Boolean> bisonCol;
+	private TableColumn<FermiEntry, Boolean> bisonCol;
 
 	@FXML
-	private Button printButton, logoutButton;
+	private Button printButton, logoutButton, reportsButton;
 
 	@FXML
 	Text updateText;
@@ -132,6 +128,14 @@ public class AdminController {
 		Stage stage = (Stage) logoutButton.getScene().getWindow();
 
 		LoginController view = new LoginController();
+		view.showView(stage);
+	}
+
+	@FXML
+	private void showReports() throws Exception {
+		Stage stage = (Stage) reportsButton.getScene().getWindow();
+
+		ReportsView view = new ReportsView();
 		view.showView(stage);
 	}
 }

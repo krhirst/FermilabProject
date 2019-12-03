@@ -1,11 +1,9 @@
 package application;
 
-import login.Login;
 import tableUpdates.Operation;
 import tableUpdates.UpdateFileReader;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Stack;
 
 public class FermiConnector {
