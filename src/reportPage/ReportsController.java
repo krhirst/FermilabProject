@@ -1,45 +1,36 @@
 package reportPage;
 
+import application.EmployeeList;
 import application.FermiConnector;
 import application.FermiEntry;
 import editUsersPage.EditUsersView;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.print.*;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
-import login.LoginController;
+import tableUpdates.Operation;
+import tableUpdates.UpdateFileReader;
 
-import javafx.scene.control.TextField;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class ReportsController {
     private FermiConnector base = new FermiConnector();
 
     @FXML
-    private TableView<FermiEntry> dataTable;
+    private TableView dataTable;
 
     @FXML
-    TableColumn<FermiEntry, String> firstNameCol;
-
-    @FXML
-    TableColumn<FermiEntry, String> lastNameCol;
-
-    @FXML
-    TableColumn<FermiEntry, String> phoneCol;
+    TableColumn<FermiEntry, String> firstNameCol, lastNameCol, phoneCol;
 
     @FXML
     TableColumn<FermiEntry, Double> overCol;
@@ -51,22 +42,20 @@ public class ReportsController {
     TableColumn<FermiEntry, Boolean> bisonCol;
 
     @FXML
-    private Button printButton;
-    
-    @FXML
-    private Button backButton;
-    
-    @FXML
-    private Button bisonButton;
-    
-    @FXML
-    private Button seniorityButton;
+    private Button printButton, backButton, bisonButton, seniorityButton, updatesButton;
     
     @FXML
     private TextField searchNumber;
     
     @FXML
     private Text errorText;
+
+    @FXML
+    private DatePicker datePicker;
+
+    private LocalDate dateFromPicker;
+
+    private EmployeeList employees = new EmployeeList();
 
     public ReportsController() {
 
@@ -127,20 +116,23 @@ public class ReportsController {
     @FXML
     private void BisonReport() throws Exception{
     	
-    	dataTable.getItems().clear();
-    	
+        dataTable.getItems().clear();
+        String columnText = phoneCol.getText();
+        if (columnText.equals("Date"))
+            resetTableView();
+
     	//grabbing list of employees from database
-    	ObservableList<FermiEntry> employees = getEmployees();
-    	ObservableList<FermiEntry> bisonEmployees = FXCollections.observableArrayList();
+        ObservableList<FermiEntry> bisonEmployees = FXCollections.observableArrayList();
     	
     	//counter for the current index in employees
     	int emp = 0;
-    	
-    	for(FermiEntry e: employees) {
-    		if(e.isInBison()) {
-    			bisonEmployees.add(e);
-    		}
-    	}
+
+    	Iterator iterator = employees.iterator();
+    	while (iterator.hasNext()) {
+    	    FermiEntry entry = (FermiEntry) iterator.next();
+    	    if (entry.isInBison())
+    	        bisonEmployees.add(entry);
+        }
     	
     	//bubble sort
     	for (int i = 0; i < bisonEmployees.size()-1; i++)   {   
@@ -157,7 +149,7 @@ public class ReportsController {
     	dataTable.setItems(bisonEmployees);
     }
     
-    private void swap(FermiEntry fermiEntry, FermiEntry fermiEntry2, int emp, ObservableList<FermiEntry> employees) {
+    private void swap(FermiEntry fermiEntry, FermiEntry fermiEntry2, int emp, List<FermiEntry> employees) {
 		
     	FermiEntry temp = new FermiEntry(fermiEntry.getFirstName(), fermiEntry.getLastName(), fermiEntry.getPhone(), fermiEntry.getOvertime(),
                 fermiEntry.getSeniority(), fermiEntry.isInBison());
@@ -175,19 +167,27 @@ public class ReportsController {
 
 	@FXML
     private void SeniorReport() throws Exception{
-		
+        String columnText = phoneCol.getText();
+		if (columnText.equals("Date"))
+		    resetTableView();
+
 		int searchNum;
-		errorText.setVisible(false);
 		
     	try {
     		searchNum = Integer.parseInt(searchNumber.getText());
     	}
     	catch (NumberFormatException e) {
-    		errorText.setVisible(true);
+    		searchNumber.getStyleClass().add("error");
+            ChangeListener resetStyle = (observableValue, oldV, newV) -> {
+                if ((boolean) newV) {
+                    searchNumber.getStyleClass().clear();
+                    searchNumber.getStyleClass().addAll("text-field", "text-input");
+                }
+            };
+            searchNumber.focusedProperty().addListener(resetStyle);
     		return;
     	}
-    	
-    	ObservableList<FermiEntry> employees = getEmployees();
+
     	ObservableList<FermiEntry> SeniorityEmployees = FXCollections.observableArrayList();
     	
     	for(FermiEntry e: employees) {
@@ -199,21 +199,46 @@ public class ReportsController {
     	dataTable.setItems(SeniorityEmployees);
     }
 
-	private ObservableList<FermiEntry> getEmployees() {
-		
-		ObservableList<FermiEntry> employees = FXCollections.observableArrayList();
-		
-		try {
-            Statement stmt = base.getConn().createStatement();
-            ResultSet result = stmt.executeQuery("SELECT * FROM hours_offered");
-            while (result.next()) {
-                employees.add(new FermiEntry(result.getString(1), result.getString(2), result.getString(3), result.getDouble(4),
-                        result.getInt(5), result.getBoolean(6)));
+    private void resetTableView() {
+        phoneCol.setText("Phone");
+        phoneCol.setCellValueFactory(new PropertyValueFactory("phone"));
+        overCol.setText("Hours");
+        overCol.setCellValueFactory(new PropertyValueFactory("overtime"));
+        bisonCol.setText("BFP");
+        bisonCol.setCellValueFactory(new PropertyValueFactory("inBison"));
+    }
+
+    @FXML
+    private void updatesReport() {
+        phoneCol.setText("Date");
+        phoneCol.setCellValueFactory(new PropertyValueFactory("time"));
+        overCol.setText("Type");
+        overCol.setCellValueFactory(new PropertyValueFactory("type"));
+        bisonCol.setText("Hours");
+        bisonCol.setCellValueFactory(new PropertyValueFactory("hoursChanged"));
+
+        List<Operation> updates;
+        if (dateFromPicker == null) {
+            updates = UpdateFileReader.getUpdatesAsList();
+        } else {
+            updates = new ArrayList<>();
+            List<Operation> allUpdates = UpdateFileReader.getUpdatesAsList();
+            for (Operation o :
+                    allUpdates) {
+                String[] splitString = o.getTime().split(" ");
+                String date = splitString[0];
+                if (date.equals(dateFromPicker.toString())) {
+                    updates.add(o);
+                }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-		
-		return employees;
-	}
+        ObservableList<Operation> items = FXCollections.observableList(updates);
+        dataTable.setItems(items);
+    }
+
+    @FXML
+    private void setDate() {
+        this.dateFromPicker = datePicker.getValue();
+        System.out.println(dateFromPicker.toString());
+    }
 }

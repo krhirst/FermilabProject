@@ -1,6 +1,7 @@
 package editUsersPage;
 
 import adminPage.AdminView;
+import application.EmployeeList;
 import application.FermiConnector;
 import application.FermiEntry;
 import javafx.beans.value.ChangeListener;
@@ -136,7 +137,7 @@ public class EditUsersController {
 	}
 
 	private FermiEntry searchUsers(String entry) {
-		ArrayList<FermiEntry> data = FermiEntry.getEmployees(db);
+		EmployeeList data = new EmployeeList();
 		for (FermiEntry employee : data) {
 			if (employee.getLastName().equalsIgnoreCase(entry)) {
 				user = employee;

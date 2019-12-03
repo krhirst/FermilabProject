@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,16 +13,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reportPage.ReportsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="721.0" stylesheets="@../application/defaultStyling.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reportPage.ReportsController">
    <children>
-      <TableView fx:id="dataTable" layoutX="118.0" layoutY="180.0" prefHeight="360.0" prefWidth="581.0">
+      <TableView fx:id="dataTable" layoutX="118.0" layoutY="172.0" prefHeight="368.0" prefWidth="581.0">
          <columns>
             <TableColumn fx:id="firstNameCol" prefWidth="116.0" text="First Name" />
             <TableColumn fx:id="lastNameCol" prefWidth="116.0" text="Last Name" />
             <TableColumn fx:id="phoneCol" prefWidth="116.0" text="Phone" />
             <TableColumn id="overCol" fx:id="overCol" minWidth="0.0" prefWidth="83.0" text="Hours" />
-            <TableColumn id="senCol" fx:id="senCol" prefWidth="90.0" text="Seniority" />
-            <TableColumn id="bisonCol" fx:id="bisonCol" prefWidth="57.0" text="BFP" />
+            <TableColumn id="senCol" fx:id="senCol" prefWidth="60.0" text="Seniority" />
+            <TableColumn id="bisonCol" fx:id="bisonCol" prefWidth="87.0" text="BFP" />
          </columns>
       </TableView>
       <Text fill="#004c97" layoutX="125.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roads &amp; Grounds" wrappingWidth="240.2060546875">
@@ -66,20 +67,17 @@
             <Button fx:id="btn6" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0" />
          </children>
       </VBox>
-      <Button fx:id="bisonButton" layoutX="118.0" layoutY="108.0" mnemonicParsing="false" onAction="#BisonReport" prefHeight="39.0" prefWidth="146.0" text="Bison Feeding Program" />
-      <Text layoutX="118.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports:" />
-      <Button fx:id="seniorityButton" layoutX="280.0" layoutY="108.0" mnemonicParsing="false" onAction="#SeniorReport" prefHeight="39.0" prefWidth="146.0" text="Seniority" />
-      <Label layoutX="433.0" layoutY="119.0" text="Seniority Number:" />
-      <TextField fx:id="searchNumber" layoutX="536.0" layoutY="115.0" prefHeight="25.0" prefWidth="36.0" />
-      <Text fx:id="errorText" fill="RED" layoutX="433.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ERROR: Please check your input" underline="true" visible="false">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Text>
+      <Button fx:id="bisonButton" layoutX="117.0" layoutY="95.0" mnemonicParsing="false" onAction="#BisonReport" prefHeight="39.0" prefWidth="146.0" text="Bison Feeding Program" />
+      <Text layoutX="118.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports:" />
+      <Button fx:id="seniorityButton" layoutX="306.0" layoutY="95.0" mnemonicParsing="false" onAction="#SeniorReport" prefHeight="39.0" prefWidth="146.0" text="Seniority" />
+      <Button fx:id="updatesButton" layoutX="508.0" layoutY="95.0" mnemonicParsing="false" onAction="#updatesReport" prefHeight="39.0" prefWidth="146.0" text="Updates" />
+      <Label layoutX="306.0" layoutY="146.0" text="Seniority Number:" />
+      <TextField fx:id="searchNumber" layoutX="409.0" layoutY="141.0" prefHeight="25.0" prefWidth="36.0" />
       <ImageView fitHeight="72.0" fitWidth="351.0" layoutX="14.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/fermi2.png" />
          </image>
       </ImageView>
+      <DatePicker fx:id="datePicker" layoutX="494.0" layoutY="142.0" onAction="#setDate" promptText="Optional: choose date" />
    </children>
 </Pane>
