@@ -204,6 +204,7 @@ public class ReportsController {
         phoneCol.setCellValueFactory(new PropertyValueFactory("phone"));
         overCol.setText("Hours");
         overCol.setCellValueFactory(new PropertyValueFactory("overtime"));
+        bisonCol.setText("BFP");
         bisonCol.setCellValueFactory(new PropertyValueFactory("inBison"));
     }
 
