@@ -22,7 +22,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="620.0" stylesheets="@../application/defaultStyling.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editUsersPage.EditUsersController">
 	<children>
-        <ImageView fitHeight="72.0" fitWidth="351.0" layoutX="14.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="45.0" fitWidth="206.0" layoutX="400.0" layoutY="601.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../resources/fermi2.png" />
             </image>
@@ -101,7 +101,7 @@
 			<tabs>
 				<Tab fx:id="addTab" text="Add User">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="268.0" prefWidth="249.0">
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="268.0" prefWidth="438.0">
 							<children>
 								<GridPane hgap="10.0" layoutX="1.0" prefHeight="268.0" prefWidth="426.0">
 									<columnConstraints>
@@ -152,7 +152,7 @@
 										</TextField>
 									</children>
 								</GridPane>
-								<VBox alignment="CENTER" layoutX="10.0" layoutY="257.0" prefHeight="106.0" prefWidth="404.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="257.0">
+								<VBox alignment="CENTER" layoutX="10.0" layoutY="257.0" prefHeight="155.0" prefWidth="416.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="257.0">
 									<children>
 										<HBox prefHeight="42.0" prefWidth="404.0">
 											<children>

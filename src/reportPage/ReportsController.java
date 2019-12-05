@@ -22,6 +22,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 
 public class ReportsController {
     private FermiConnector base = new FermiConnector();
@@ -217,22 +218,31 @@ public class ReportsController {
         bisonCol.setText("Hours");
         bisonCol.setCellValueFactory(new PropertyValueFactory("hoursChanged"));
 
-        List<Operation> updates;
+        List<Operation> updatesList;
+        Stack<Operation> updatesStack;
+        ObservableList<Operation> items;
         if (dateFromPicker == null) {
-            updates = UpdateFileReader.getUpdatesAsList();
+            updatesList = new ArrayList<>();
+            updatesStack = UpdateFileReader.getUpdatesAsStack();
+            int length = updatesStack.size();
+            for (int i = 0; i < length; i++) {
+                updatesList.add(updatesStack.pop());
+            }
+            items = FXCollections.observableList(updatesList);
         } else {
-            updates = new ArrayList<>();
-            List<Operation> allUpdates = UpdateFileReader.getUpdatesAsList();
+            updatesList = UpdateFileReader.getUpdatesAsList();
+            List<Operation> selectedUpdates = new ArrayList<>();
             for (Operation o :
-                    allUpdates) {
+                    updatesList) {
                 String[] splitString = o.getTime().split(" ");
                 String date = splitString[0];
                 if (date.equals(dateFromPicker.toString())) {
-                    updates.add(o);
+                    selectedUpdates.add(o);
                 }
             }
+            items = FXCollections.observableList(selectedUpdates);
         }
-        ObservableList<Operation> items = FXCollections.observableList(updates);
+
         dataTable.setItems(items);
     }
 
