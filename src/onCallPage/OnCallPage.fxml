@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adminPage.AdminController">
+	<children>
+        <ImageView fitHeight="39.0" fitWidth="317.0" layoutX="489.0" layoutY="797.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../resources/fermi2.png" />
+            </image>
+        </ImageView>
+		<TableView fx:id="dataTable" layoutX="118.0" layoutY="95.0" prefHeight="585.0" prefWidth="581.0">
+			<columns>
+				<TableColumn fx:id="firstNameCol" prefWidth="96.79999542236328" text="First Name" />
+				<TableColumn fx:id="lastNameCol" prefWidth="121.5999755859375" text="Last Name" />
+				<TableColumn fx:id="phoneCol" prefWidth="136.00006103515625" text="Phone" />
+				<TableColumn id="overCol" fx:id="overCol" minWidth="0.0" prefWidth="78.39993286132812" text="Hours" />
+				<TableColumn id="senCol" fx:id="senCol" prefWidth="82.4000244140625" text="Seniority" />
+				<TableColumn id="bisonCol" fx:id="bisonCol" prefWidth="66.4000244140625" text="BFP" />
+			</columns>
+		</TableView>
+		<Text fill="#004c97" layoutX="127.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roads &amp; Grounds" wrappingWidth="288.20599365234375">
+			<font>
+				<Font name="System Bold" size="25.0" />
+			</font>
+		</Text>
+		<Text fill="#004c97" layoutX="129.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime List Application" wrappingWidth="182.2060546875">
+			<font>
+				<Font size="15.0" />
+			</font>
+		</Text>
+		<VBox prefHeight="640.0" prefWidth="100.0">
+			<children>
+				<Button fx:id="btn1" mnemonicParsing="false" prefHeight="90.0" prefWidth="104.0">
+                    <graphic>
+                        <ImageView fitHeight="72.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../resources/home3.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+				<Button fx:id="usersButton" mnemonicParsing="false" onAction="#editUsers" prefHeight="90.0" prefWidth="104.0">
+					<font>
+						<Font name="System Bold Italic" size="24.0" />
+					</font>
+                    <graphic>
+                        <ImageView fitHeight="63.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../resources/user.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+				</Button>
+				<Button fx:id="printButton" mnemonicParsing="false" onAction="#printPage" prefHeight="90.0" prefWidth="104.0">
+					<font>
+						<Font name="System Bold Italic" size="26.0" />
+					</font>
+                    <graphic>
+                        <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../resources/print2.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+				</Button>
+                <Button fx:id="reportsButton" mnemonicParsing="false" onAction="#showReports" prefHeight="90.0" prefWidth="104.0">
+                    <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/reports.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+				<Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logOut" prefHeight="90.0" prefWidth="104.0">
+					<font>
+						<Font name="System Bold Italic" size="18.0" />
+					</font>
+                    <graphic>
+                        <ImageView fitHeight="63.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../resources/logout2.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+				</Button>
+			</children>
+		</VBox>
+		<Text fx:id="updateText" layoutX="491.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Updated: 11/7/19 08:51AM" wrappingWidth="202.13668823242188" />
+      <Text layoutX="118.0" layoutY="705.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes:" wrappingWidth="130.93670654296875" />
+      <TextArea layoutX="116.0" layoutY="711.0" prefHeight="80.0" prefWidth="581.0" />
+	</children>
+</Pane>
